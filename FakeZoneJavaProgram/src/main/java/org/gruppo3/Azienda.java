@@ -19,8 +19,11 @@ public class Azienda {
         utenti.add(user);
     }
 
-
     public void addProdotto(Prodotto product){
         prodotti.add(product);
+    }
+
+    public void addOrdine(Ordine order){
+        ordiniDelGiorno.add(order);
     }
 }
