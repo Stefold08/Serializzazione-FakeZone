@@ -26,4 +26,12 @@ public class Azienda {
     public void addOrdine(Ordine order){
         ordiniDelGiorno.add(order);
     }
+
+    public void visualizzaDatiUtente(String codiceFiscale, String email, String numeroTelefono){
+        for (int i = 0; i < utenti.size(); i++){
+            if (utenti.get(i).getCodiceFiscale().equals()){
+
+            }
+        }
+    }
 }
