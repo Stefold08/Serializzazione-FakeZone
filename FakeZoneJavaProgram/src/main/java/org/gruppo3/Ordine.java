@@ -30,7 +30,7 @@ public class Ordine {
         return stato;
     }
 
-    public void setStato(){
-
+    public void setStato(char stato){
+        this.stato = stato;
     }
 }
