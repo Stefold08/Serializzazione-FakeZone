@@ -7,6 +7,7 @@ public class Ordine {
     private LocalDate dataOrdine;
     private ArrayList<DettagliOrdine> dettagliProdotti;
     private double importTotale;
+    private char stato;
     private Utente utente;
     private int numeroOrdine;
 
@@ -21,5 +22,15 @@ public class Ordine {
         return "la data dell'ordine e': " + dataOrdine + "\n l'importo dell'ordine e': " + importTotale + "\n l'utente che ha fatto l'ordine e': " + utente + "\n il numero dell'ordine e': " + numeroOrdine;
     }
 
+    public int getNumeroOrdine(){
+        return numeroOrdine;
+    }
 
+    public char getStato(){
+        return stato;
+    }
+
+    public void setStato(){
+
+    }
 }
