@@ -18,4 +18,9 @@ public class Azienda {
     public void addUtente(Utente user){
         utenti.add(user);
     }
+
+
+    public void addProdotto(Prodotto product){
+        prodotti.add(product);
+    }
 }
