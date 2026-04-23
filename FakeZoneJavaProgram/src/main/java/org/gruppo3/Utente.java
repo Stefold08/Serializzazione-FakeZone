@@ -24,5 +24,10 @@ public class Utente {
         this.indirizzo = indirizzo;
         this.numeroTel = numeroTel;
     }
+
+    @Override
+    public String toString(){
+        return "Dati utente: " + "\n nome: " + nome + "\n cognome: " + cognome + "\n codice fiscale: " + codiceFiscale + "n" + "\n sesso: " + sesso + "\n la password e': " + pasword + "\n email: " + email + "\n indirizzo di casa: " + indirizzo + "\n data di nascita: " + dataNascita + "\n numero di tel: " + numeroTel;
+    }
 }
 
