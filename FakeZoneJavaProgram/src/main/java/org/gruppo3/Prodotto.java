@@ -28,4 +28,8 @@ public class Prodotto {
 
         return messaggio;
     }
+
+    public void aggiungiImmagine(String path){
+        pathImmagini.add(path);
+    }
 }
