@@ -14,4 +14,8 @@ public class Azienda {
         prodotti = new ArrayList<>();
         ordiniDelGiorno = new ArrayList<>();
     }
+
+    public void addUtente(Utente user){
+        utenti.add(user);
+    }
 }
