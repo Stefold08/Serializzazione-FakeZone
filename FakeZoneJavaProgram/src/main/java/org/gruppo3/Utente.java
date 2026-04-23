@@ -29,5 +29,17 @@ public class Utente {
     public String toString(){
         return "Dati utente: " + "\n nome: " + nome + "\n cognome: " + cognome + "\n codice fiscale: " + codiceFiscale + "n" + "\n sesso: " + sesso + "\n la password e': " + pasword + "\n email: " + email + "\n indirizzo di casa: " + indirizzo + "\n data di nascita: " + dataNascita + "\n numero di tel: " + numeroTel;
     }
+
+    public String getCodiceFiscale(){
+        return codiceFiscale;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public String getNumeroTel(){
+        return numeroTel;
+    }
 }
 
