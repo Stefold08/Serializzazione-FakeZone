@@ -43,7 +43,9 @@ public class Azienda {
 
     public void visualizzaDatiProdotto(String codice){
         for (int i = 0; i < prodotti.size(); i++){
-
+            if (prodotti.get(i).getCodice().equals(codice)){
+                System.out.println(prodotti.get(i).toString());
+            }
         }
     }
 }
