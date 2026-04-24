@@ -48,4 +48,12 @@ public class Azienda {
             }
         }
     }
+
+    public void visualizzaDatiOrdine(int numeroOrdine){
+        for (int i = 0; i < ordiniDelGiorno.size(); i++){
+            if (ordiniDelGiorno.get(i).getNumeroOrdine() == numeroOrdine){
+                System.out.println(ordiniDelGiorno.get(i).toString());
+            }
+        }
+    }
 }
