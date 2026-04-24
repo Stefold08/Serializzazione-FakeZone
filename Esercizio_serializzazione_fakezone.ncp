@@ -30,13 +30,14 @@
         <Name>Prodotto</Name>
         <Access>Public</Access>
         <Location left="594" top="405" />
-        <Size width="356" height="230" />
+        <Size width="356" height="247" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private String codice</Member>
         <Member type="Field">private String descizione</Member>
         <Member type="Field">private ArrayList&lt;String&gt; pathImmagini</Member>
         <Member type="Field">private double costo</Member>
-        <Member type="Constructor">public Prodotto(String codice, String descrizione, double costo)</Member>
+        <Member type="Field">private String nomeProdotto</Member>
+        <Member type="Constructor">public Prodotto(String codice, String descrizione, double costo, String nomeProdotto)</Member>
         <Member type="Method">public String toString()</Member>
         <Member type="Method">public void aggiungiImmagine(String path)</Member>
         <Member type="Method">public double getCosto()</Member>
@@ -47,7 +48,7 @@
         <Name>Ordine</Name>
         <Access>Public</Access>
         <Location left="1019" top="405" />
-        <Size width="736" height="281" />
+        <Size width="736" height="315" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private LocalDate dataOrdine</Member>
         <Member type="Field">private ArrayList&lt;DettagliOrdine&gt; prodotti</Member>
@@ -61,6 +62,8 @@
         <Member type="Method">public int getNumeroOrdine()</Member>
         <Member type="Method">public char getStato()</Member>
         <Member type="Method">public void setStato()</Member>
+        <Member type="Method">public void calcolaImportoTotale()</Member>
+        <Member type="Method">public double getImportoTotale()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
@@ -78,11 +81,11 @@
         <Member type="Method">public void addUtente(Utente user)</Member>
         <Member type="Method">public void addProdotto(Prodotto product)</Member>
         <Member type="Method">public void addOrdine(Ordine order)</Member>
-        <Member type="Method">public void visualizzaDatiUtente()</Member>
-        <Member type="Method">public void visualizzaDatiProdotto()</Member>
-        <Member type="Method">public void visualizzaDatiOrdine()</Member>
-        <Member type="Method">public void modificaStatoOrdine(char stato)</Member>
-        <Member type="Method">public void incassoPeriodo()</Member>
+        <Member type="Method">public void visualizzaDatiUtente(String codiceFiscale, String email, String numeroTelefono)</Member>
+        <Member type="Method">public void visualizzaDatiProdotto(String codice)</Member>
+        <Member type="Method">public void visualizzaDatiOrdine(int numeroOrdine)</Member>
+        <Member type="Method">public void modificaStatoOrdine(char stato, int numeroOrdine)</Member>
+        <Member type="Method">public void visualizzaIncassoPeriodo()</Member>
         <Member type="Method">public int esportaDati()</Member>
         <Member type="Method">public int importaDati()</Member>
         <Modifier>None</Modifier>
@@ -125,7 +128,7 @@
         <Name>DettagliOrdine</Name>
         <Access>Public</Access>
         <Location left="660" top="744" />
-        <Size width="379" height="179" />
+        <Size width="379" height="196" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private Prodotto prodotto</Member>
         <Member type="Field">private double costo</Member>
@@ -133,13 +136,12 @@
         <Member type="Constructor">public DettagliOrdine(Prodotto prodotto, double costo, int quantita)</Member>
         <Member type="Method">public int getQuantita()</Member>
         <Member type="Method">public double getCosto()</Member>
+        <Member type="Method">public String toString()</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
     <Relationships>
       <Relationship type="Dependency" first="5" second="3">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -148,8 +150,6 @@
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="3" second="0">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -160,8 +160,6 @@
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="3" second="2">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -172,8 +170,6 @@
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="3" second="1">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -184,16 +180,12 @@
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="4">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="0" second="4">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -208,8 +200,6 @@
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Dependency" first="2" second="0">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="False">
@@ -218,10 +208,14 @@
         </BendPoint>
       </Relationship>
       <Relationship type="Dependency" first="6" second="1">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
       <Relationship type="Association" first="6" second="2">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -230,7 +224,7 @@
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>1156</X>
-          <Y>731</Y>
+          <Y>765</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
