@@ -52,4 +52,8 @@ public class Ordine {
 
         importTotale = importo;
     }
+
+    public double getImportTotale(){
+        return importTotale;
+    }
 }
