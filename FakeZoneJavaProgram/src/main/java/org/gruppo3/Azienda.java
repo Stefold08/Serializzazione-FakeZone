@@ -1,5 +1,6 @@
 package org.gruppo3;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Azienda {
@@ -62,6 +63,13 @@ public class Azienda {
             if (ordiniDelGiorno.get(i).getNumeroOrdine() == numeroOrdine){
                 ordiniDelGiorno.get(i).setStato(stato);
             }
+        }
+    }
+
+    public void visulizzaIncasssoPeriodo(LocalDate inizio, LocalDate fine){
+        double incassiPeriodo = 0;
+        for (int i = 0; i < ordiniDelGiorno.size(); i++){
+
         }
     }
 }
