@@ -18,4 +18,9 @@ public class DettagliOrdine {
     public double getCosto(){
         return costo;
     }
+
+    @Override
+    public String toString(){
+        return "Prodotto: " + prodotto.getDettagliProdottoOrdine() + "\nCosto: " + costo + "\nQuantità: " + quantita;
+    }
 }
