@@ -5,18 +5,17 @@ public class DettagliOrdine {
     private double costo;
     private int quantita;
 
-    private DettagliOrdine(Prodotto prodotto, double costo, int quantita){
+    public DettagliOrdine(Prodotto prodotto, double costo, int quantita){
         this.prodotto = prodotto;
         this.costo = costo;
         this.quantita = quantita;
     }
 
-    private int getQuantita(){
+    public int getQuantita(){
         return quantita;
     }
 
-    private double getCosto(){
+    public double getCosto(){
         return costo;
     }
-
 }
