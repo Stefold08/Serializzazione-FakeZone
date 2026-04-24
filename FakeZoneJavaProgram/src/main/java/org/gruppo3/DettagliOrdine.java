@@ -1,4 +1,21 @@
 package org.gruppo3;
 
 public class DettagliOrdine {
+    private Prodotto prodotto;
+    private double costo;
+    private int quantita;
+
+    private DettagliOrdine(Prodotto prodotto, double costo, int quantita){
+        this.prodotto = prodotto;
+        this.costo = costo;
+        this.quantita = quantita;
+    }
+
+    private int getQuantita(){
+        return quantita;
+    }
+
+    private double getCosto(){
+        return costo;
+    }
 }
