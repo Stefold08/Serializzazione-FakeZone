@@ -69,7 +69,12 @@ public class Azienda {
     public void visulizzaIncasssoPeriodo(LocalDate inizio, LocalDate fine){
         double incassiPeriodo = 0;
         for (int i = 0; i < ordiniDelGiorno.size(); i++){
-
+            if ((ordiniDelGiorno.get(i).getDataOrdine().isAfter(inizio) || ordiniDelGiorno.get(i).getDataOrdine().isEqual(inizio))
+                    && (ordiniDelGiorno.get(i).getDataOrdine().isBefore(fine) || ordiniDelGiorno.get(i).getDataOrdine().isEqual(fine))){
+                incassiPeriodo += ordiniDelGiorno.get(i).getImportTotale();
+            }
         }
+
+        System.out.println("Importo totale del periodo " + inizio.toString() + "/" + fine.toString() + ": " + incassiPeriodo);
     }
 }
