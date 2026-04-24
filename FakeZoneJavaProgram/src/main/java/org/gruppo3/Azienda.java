@@ -56,4 +56,12 @@ public class Azienda {
             }
         }
     }
+
+    public void modificaStatoOrdine(char stato, int numeroOrdine){
+        for (int i = 0; i < ordiniDelGiorno.size(); i++){
+            if (ordiniDelGiorno.get(i).getNumeroOrdine() == numeroOrdine){
+                ordiniDelGiorno.get(i).setStato(stato);
+            }
+        }
+    }
 }

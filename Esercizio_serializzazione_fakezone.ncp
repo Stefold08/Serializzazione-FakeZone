@@ -82,7 +82,7 @@
         <Member type="Method">public void visualizzaDatiUtente(String codiceFiscale, String email, String numeroTelefono)</Member>
         <Member type="Method">public void visualizzaDatiProdotto(String codice)</Member>
         <Member type="Method">public void visualizzaDatiOrdine(int numeroOrdine)</Member>
-        <Member type="Method">public void modificaStatoOrdine(char stato)</Member>
+        <Member type="Method">public void modificaStatoOrdine(char stato, int numeroOrdine)</Member>
         <Member type="Method">public void incassoPeriodo()</Member>
         <Member type="Method">public int esportaDati()</Member>
         <Member type="Method">public int importaDati()</Member>
