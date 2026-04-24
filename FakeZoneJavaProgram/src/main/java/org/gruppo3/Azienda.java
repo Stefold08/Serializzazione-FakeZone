@@ -29,11 +29,11 @@ public class Azienda {
 
     public void visualizzaDatiUtente(String codiceFiscale, String email, String numeroTelefono){
         for (int i = 0; i < utenti.size(); i++){
-            if (utenti.get(i).getCodiceFiscale().equals(codiceFiscale)){
+            if (utenti.get(i).getCodiceFiscale().equals(codiceFiscale)){ // Controllo con codice fiscale
                 System.out.println(utenti.get(i).toString());
-            } else if (utenti.get(i).getEmail().equals(email)) {
+            } else if (utenti.get(i).getEmail().equals(email)) { // Controllo con email
                 System.out.println(utenti.get(i).toString());
-            }else if (utenti.get(i).getNumeroTel().equals(numeroTelefono)){
+            }else if (utenti.get(i).getNumeroTel().equals(numeroTelefono)){ // Controllo con numero di telefono
                 System.out.println(utenti.get(i).toString());
             }else{
                 System.out.println("Utente non trovato / inesistente!");
