@@ -40,4 +40,10 @@ public class Azienda {
             }
         }
     }
+
+    public void visualizzaDatiProdotto(String codice){
+        for (int i = 0; i < prodotti.size(); i++){
+
+        }
+    }
 }
