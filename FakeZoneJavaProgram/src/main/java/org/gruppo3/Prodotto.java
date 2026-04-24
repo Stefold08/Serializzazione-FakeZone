@@ -19,5 +19,15 @@ public class Prodotto {
         return "il codice del prodotto e': " + codice + "\n descrizzione del prodotto: " + descrizione + "\n il costo del prodotto e': " + costo;
     }
 
+    public void aggiungiImmagine(String path){
+        pathImmagini.add(path);
+    }
 
+    public double getCosto() {
+        return costo;
+    }
+
+    public String getCodice(){
+        return codice;
+    }
 }
