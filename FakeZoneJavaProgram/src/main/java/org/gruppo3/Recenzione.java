@@ -1,5 +1,7 @@
 package org.gruppo3;
 
+import java.time.LocalDate;
+
 // DA IMPLEMENTARE + AVANTI!!!
 public class Recenzione {
     private int stelle;
@@ -14,5 +16,5 @@ public class Recenzione {
         this.descrizzione = descrizzione;
     }
 
-    
+
 }
