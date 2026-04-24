@@ -41,4 +41,15 @@ public class Ordine {
     public void setStato(char stato){
         this.stato = stato;
     }
+
+    public void calcolaImportoTotale(){
+        double importo = 0;
+        double costoQuantita = 0;
+        for (int i = 0; i < dettagliProdotti.size(); i++){
+            costoQuantita += dettagliProdotti.get(i).getQuantita();
+            importo += dettagliProdotti.get(i).getCosto() * costoQuantita;
+        }
+
+        importTotale = importo;
+    }
 }

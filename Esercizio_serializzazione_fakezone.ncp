@@ -48,7 +48,7 @@
         <Name>Ordine</Name>
         <Access>Public</Access>
         <Location left="1019" top="405" />
-        <Size width="736" height="281" />
+        <Size width="736" height="298" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private LocalDate dataOrdine</Member>
         <Member type="Field">private ArrayList&lt;DettagliOrdine&gt; prodotti</Member>
@@ -62,6 +62,7 @@
         <Member type="Method">public int getNumeroOrdine()</Member>
         <Member type="Method">public char getStato()</Member>
         <Member type="Method">public void setStato()</Member>
+        <Member type="Method">public double calcolaImportoTotale()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
@@ -222,7 +223,7 @@
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>1156</X>
-          <Y>731</Y>
+          <Y>748</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
