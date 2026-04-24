@@ -19,7 +19,15 @@ public class Ordine {
     }
 
     public String toString(){
-        return "la data dell'ordine e': " + dataOrdine + "\n l'importo dell'ordine e': " + importTotale + "\n l'utente che ha fatto l'ordine e': " + utente + "\n il numero dell'ordine e': " + numeroOrdine;
+        String messaggio = null;
+
+        messaggio = "la data dell'ordine e': " + dataOrdine + "\n l'importo dell'ordine e': " + importTotale + "\n l'utente che ha fatto l'ordine e': " + utente + "\n il numero dell'ordine e': " + numeroOrdine;
+
+        for (int i = 0; i < dettagliProdotti.size(); i++){
+            messaggio += dettagliProdotti.toString() + "\n";
+        }
+
+        return messaggio;
     }
 
     public int getNumeroOrdine(){

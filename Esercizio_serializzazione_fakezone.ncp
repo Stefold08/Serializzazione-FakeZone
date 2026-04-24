@@ -30,13 +30,14 @@
         <Name>Prodotto</Name>
         <Access>Public</Access>
         <Location left="594" top="405" />
-        <Size width="356" height="230" />
+        <Size width="356" height="247" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private String codice</Member>
         <Member type="Field">private String descizione</Member>
         <Member type="Field">private ArrayList&lt;String&gt; pathImmagini</Member>
         <Member type="Field">private double costo</Member>
-        <Member type="Constructor">public Prodotto(String codice, String descrizione, double costo)</Member>
+        <Member type="Field">private String nomeProdotto</Member>
+        <Member type="Constructor">public Prodotto(String codice, String descrizione, double costo, String nomeProdotto)</Member>
         <Member type="Method">public String toString()</Member>
         <Member type="Method">public void aggiungiImmagine(String path)</Member>
         <Member type="Method">public double getCosto()</Member>
@@ -125,7 +126,7 @@
         <Name>DettagliOrdine</Name>
         <Access>Public</Access>
         <Location left="660" top="744" />
-        <Size width="379" height="179" />
+        <Size width="379" height="196" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private Prodotto prodotto</Member>
         <Member type="Field">private double costo</Member>
@@ -133,6 +134,7 @@
         <Member type="Constructor">public DettagliOrdine(Prodotto prodotto, double costo, int quantita)</Member>
         <Member type="Method">public int getQuantita()</Member>
         <Member type="Method">public double getCosto()</Member>
+        <Member type="Method">public String toString()</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
