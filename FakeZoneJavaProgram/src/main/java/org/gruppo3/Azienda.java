@@ -29,8 +29,14 @@ public class Azienda {
 
     public void visualizzaDatiUtente(String codiceFiscale, String email, String numeroTelefono){
         for (int i = 0; i < utenti.size(); i++){
-            if (utenti.get(i).getCodiceFiscale().equals()){
-
+            if (utenti.get(i).getCodiceFiscale().equals(codiceFiscale)){
+                System.out.println(utenti.get(i).toString());
+            } else if (utenti.get(i).getEmail().equals(email)) {
+                System.out.println(utenti.get(i).toString());
+            }else if (utenti.get(i).getNumeroTel().equals(numeroTelefono)){
+                System.out.println(utenti.get(i).toString());
+            }else{
+                System.out.println("Utente non trovato / inesistente!");
             }
         }
     }
