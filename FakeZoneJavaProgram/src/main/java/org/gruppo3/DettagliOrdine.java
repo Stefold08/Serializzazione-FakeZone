@@ -18,4 +18,5 @@ public class DettagliOrdine {
     private double getCosto(){
         return costo;
     }
+
 }
