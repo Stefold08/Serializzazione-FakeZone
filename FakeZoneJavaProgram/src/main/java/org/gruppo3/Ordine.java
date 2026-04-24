@@ -56,4 +56,8 @@ public class Ordine {
     public double getImportTotale(){
         return importTotale;
     }
+
+    public LocalDate getDataOrdine(){
+        return dataOrdine;
+    }
 }
