@@ -40,4 +40,8 @@ public class Prodotto {
     public String getCodice(){
         return codice;
     }
+
+    public String getDettagliProdottoOrdine(){
+        return "Codice prodotto: " + codice + "\nNome: " + nomeProdotto + "\nDescrizione:\n" + descrizione + "\n";
+    }
 }
