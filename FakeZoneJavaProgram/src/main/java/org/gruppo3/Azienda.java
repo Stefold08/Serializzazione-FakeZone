@@ -4,6 +4,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.concurrent.CancellationException;
 
 public class Azienda {
     private final String nome = "Fakezone";
@@ -145,6 +146,39 @@ public class Azienda {
         } catch (IOException ioEx){
             System.err.println("Errore: " + ioEx.getMessage());
             System.err.println("Errore di Input/Output");
+        }
+
+        try {
+            if (!utenti.isEmpty()) {
+                System.out.println("Eliminazione degli utenti temporanei in corso...");
+            } else if (!prodotti.isEmpty()) {
+                System.out.println("Eliminazione dei prodotti temporanei in corso...");
+            } else if (!ordiniDelGiorno.isEmpty()) {
+                System.out.println("Eliminazione degli ordini temporanei in corso...");
+            }
+
+            while (true) {
+                Utente u = (Utente) utentiIn.readObject();
+                utenti.add(u);
+            }
+        } catch (EOFException eofException) {
+            System.out.println("Caricamento utenti completato!");
+
+            try{
+                utentiIn.close();
+            }catch (IOException ioEx){
+                System.err.println("Errore: " + ioEx.getMessage());
+                System.err.println("Errore di Input/Output");
+            }
+        } catch (ClassNotFoundException classEx){
+            System.err.println("Errore: " + classEx.getMessage());
+            System.err.println("Classe non trovata");
+        } catch (IOException ioEx){
+            System.err.println("Errore: " + ioEx.getMessage());
+            System.err.println("Errore di Input/Output");
+        } catch (NullPointerException nullPtrEx){
+            System.err.println("Errore: " +  nullPtrEx.getMessage());
+            System.err.println("Oggetto non caricato correttamente");
         }
     }
 }
