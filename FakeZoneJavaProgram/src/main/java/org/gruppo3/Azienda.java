@@ -180,5 +180,30 @@ public class Azienda {
             System.err.println("Errore: " +  nullPtrEx.getMessage());
             System.err.println("Oggetto non caricato correttamente");
         }
+
+        try{
+            while (true){
+                Prodotto p = (Prodotto) prodottiIn.readObject();
+                prodotti.add(p);
+            }
+        } catch (EOFException eofEx){
+            System.out.println("Inserimento dati prodotti completato");
+
+            try{
+                prodottiIn.close();
+            }catch (IOException ioEx){
+                System.err.println("Errore: " + ioEx.getMessage());
+                System.err.println("Errore di Input/Output");
+            }
+        }catch (ClassNotFoundException classEx){
+            System.err.println("Errore: " + classEx.getMessage());
+            System.err.println("Classe non trovata");
+        } catch (IOException ioEx){
+            System.err.println("Errore: " + ioEx.getMessage());
+            System.err.println("Errore di Input/Output");
+        } catch (NullPointerException nullPtrEx){
+            System.err.println("Errore: " +  nullPtrEx.getMessage());
+            System.err.println("Oggetto non caricato correttamente");
+        }
     }
 }
