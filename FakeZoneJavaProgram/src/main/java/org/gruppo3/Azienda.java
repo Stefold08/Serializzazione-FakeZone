@@ -129,4 +129,22 @@ public class Azienda {
             System.err.println("Oggetto non caricato correttamente");
         }
     }
+
+    public void importaDati(String sceta){
+        ObjectInputStream utentiIn = null;
+        ObjectInputStream prodottiIn = null;
+        ObjectInputStream ordiniIn = null;
+
+        try {
+            utentiIn = new ObjectInputStream(new FileInputStream("datiUtent.dat"));
+            prodottiIn = new ObjectInputStream(new FileInputStream("datiProdotti.dat"));
+            ordiniIn = new ObjectInputStream(new FileInputStream("datiOrdini.dat"));
+        } catch (FileNotFoundException fileEx){
+            System.err.println("Errore: " + fileEx.getMessage());
+            System.err.println("Files non trovati");
+        } catch (IOException ioEx){
+            System.err.println("Errore: " + ioEx.getMessage());
+            System.err.println("Errore di Input/Output");
+        }
+    }
 }
