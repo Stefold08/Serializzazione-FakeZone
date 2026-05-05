@@ -76,7 +76,7 @@
         <Member type="Field">private String sitoWeb</Member>
         <Member type="Field">private ArrayList&lt;Utente&gt; utenti</Member>
         <Member type="Field">private ArrayList&lt;Prodotto&gt; prodotti</Member>
-        <Member type="Field">private ArrayList&lt;Ordine&gt; ordiniDelGiorno</Member>
+        <Member type="Field">private ArrayList&lt;Ordine&gt; ordini</Member>
         <Member type="Constructor">public Azienda()</Member>
         <Member type="Method">public void addUtente(Utente user)</Member>
         <Member type="Method">public void addProdotto(Prodotto product)</Member>

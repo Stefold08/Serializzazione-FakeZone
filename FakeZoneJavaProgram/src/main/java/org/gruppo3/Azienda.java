@@ -3,20 +3,18 @@ package org.gruppo3;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.concurrent.CancellationException;
 
 public class Azienda {
     private final String nome = "Fakezone";
     private final String sitoWeb = "www.fakezone.sola";
     private ArrayList<Utente> utenti;
     private ArrayList<Prodotto> prodotti;
-    private ArrayList<Ordine> ordiniDelGiorno;
+    private ArrayList<Ordine> ordini;
 
     public Azienda(){
         utenti = new ArrayList<>();
         prodotti = new ArrayList<>();
-        ordiniDelGiorno = new ArrayList<>();
+        ordini = new ArrayList<>();
     }
 
     public void addUtente(Utente user){
@@ -28,7 +26,7 @@ public class Azienda {
     }
 
     public void addOrdine(Ordine order){
-        ordiniDelGiorno.add(order);
+        ordini.add(order);
     }
 
     public void visualizzaDatiUtente(String codiceFiscale, String email, String numeroTelefono){
@@ -54,27 +52,27 @@ public class Azienda {
     }
 
     public void visualizzaDatiOrdine(int numeroOrdine){
-        for (int i = 0; i < ordiniDelGiorno.size(); i++){
-            if (ordiniDelGiorno.get(i).getNumeroOrdine() == numeroOrdine){
-                System.out.println(ordiniDelGiorno.get(i).toString());
+        for (int i = 0; i < ordini.size(); i++){
+            if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
+                System.out.println(ordini.get(i).toString());
             }
         }
     }
 
     public void modificaStatoOrdine(char stato, int numeroOrdine){
-        for (int i = 0; i < ordiniDelGiorno.size(); i++){
-            if (ordiniDelGiorno.get(i).getNumeroOrdine() == numeroOrdine){
-                ordiniDelGiorno.get(i).setStato(stato);
+        for (int i = 0; i < ordini.size(); i++){
+            if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
+                ordini.get(i).setStato(stato);
             }
         }
     }
 
     public void visulizzaIncasssoPeriodo(LocalDate inizio, LocalDate fine){
         double incassiPeriodo = 0;
-        for (int i = 0; i < ordiniDelGiorno.size(); i++){
-            if ((ordiniDelGiorno.get(i).getDataOrdine().isAfter(inizio) || ordiniDelGiorno.get(i).getDataOrdine().isEqual(inizio))
-                    && (ordiniDelGiorno.get(i).getDataOrdine().isBefore(fine) || ordiniDelGiorno.get(i).getDataOrdine().isEqual(fine))){
-                incassiPeriodo += ordiniDelGiorno.get(i).getImportTotale();
+        for (int i = 0; i < ordini.size(); i++){
+            if ((ordini.get(i).getDataOrdine().isAfter(inizio) || ordini.get(i).getDataOrdine().isEqual(inizio))
+                    && (ordini.get(i).getDataOrdine().isBefore(fine) || ordini.get(i).getDataOrdine().isEqual(fine))){
+                incassiPeriodo += ordini.get(i).getImportTotale();
             }
         }
 
@@ -110,8 +108,8 @@ public class Azienda {
             }
 
             // Salvataggio ordini
-            for (int i = 0; i < ordiniDelGiorno.size(); i++){
-                ordiniOut.writeObject(ordiniDelGiorno.get(i));
+            for (int i = 0; i < ordini.size(); i++){
+                ordiniOut.writeObject(ordini.get(i));
             }
 
             // Chiusura dei file
@@ -153,7 +151,7 @@ public class Azienda {
                 System.out.println("Eliminazione degli utenti temporanei in corso...");
             } else if (!prodotti.isEmpty()) {
                 System.out.println("Eliminazione dei prodotti temporanei in corso...");
-            } else if (!ordiniDelGiorno.isEmpty()) {
+            } else if (!ordini.isEmpty()) {
                 System.out.println("Eliminazione degli ordini temporanei in corso...");
             }
 
@@ -209,7 +207,7 @@ public class Azienda {
         try{
             while (true){
                 Ordine o = (Ordine) ordiniIn.readObject();
-                ordiniDelGiorno.add(o);
+                ordini.add(o);
             }
         }catch (EOFException eofEx){
             System.out.println("Caricamento degli ordini comletato");
