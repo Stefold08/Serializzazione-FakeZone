@@ -3,7 +3,10 @@ package org.gruppo3;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Ordine {
+import java.io.Serializable;
+
+public class Ordine implements Serializable{
+    private static final long serialVersionUID = 1;
     private LocalDate dataOrdine;
     private ArrayList<DettagliOrdine> dettagliProdotti;
     private double importTotale;

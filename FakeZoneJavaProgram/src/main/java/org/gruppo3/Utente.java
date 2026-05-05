@@ -1,8 +1,10 @@
 package org.gruppo3;
 
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Utente {
+public class Utente implements Serializable{
+    private static final long serialVersionUID = 1;
     private String pasword;
     private String nome;
     private String cognome;

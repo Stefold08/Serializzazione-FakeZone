@@ -1,8 +1,10 @@
 package org.gruppo3;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Prodotto {
+public class Prodotto implements Serializable{
+    private static final long serialVersionUID = 1;
     private String codice;
     private String nomeProdotto;
     private String descrizione;
