@@ -15,7 +15,7 @@ public class Utente implements Serializable{
     private String indirizzo;
     private String numeroTel;
 
-    private Utente(String pasword, String nome, String cognome, LocalDate dataNascita, char sesso, String codiceFiscale, String email, String indirizzo, String numeroTel){
+    public Utente(String pasword, String nome, String cognome, LocalDate dataNascita, char sesso, String codiceFiscale, String email, String indirizzo, String numeroTel){
         this.pasword = pasword;
         this.nome = nome;
         this.cognome = cognome;
