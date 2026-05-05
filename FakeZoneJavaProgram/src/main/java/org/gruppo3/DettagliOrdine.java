@@ -1,6 +1,9 @@
 package org.gruppo3;
 
-public class DettagliOrdine {
+import java.io.Serializable;
+
+public class DettagliOrdine implements Serializable{
+    private static final long serialVersionUID = 1;
     private Prodotto prodotto;
     private double costo;
     private int quantita;

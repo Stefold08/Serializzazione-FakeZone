@@ -1,8 +1,10 @@
 package org.gruppo3;
 
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Utente {
+public class Utente implements Serializable{
+    private static final long serialVersionUID = 1;
     private String pasword;
     private String nome;
     private String cognome;
@@ -13,7 +15,7 @@ public class Utente {
     private String indirizzo;
     private String numeroTel;
 
-    private Utente(String pasword, String nome, String cognome, LocalDate dataNascita, char sesso, String codiceFiscale, String email, String indirizzo, String numeroTel){
+    public Utente(String pasword, String nome, String cognome, LocalDate dataNascita, char sesso, String codiceFiscale, String email, String indirizzo, String numeroTel){
         this.pasword = pasword;
         this.nome = nome;
         this.cognome = cognome;

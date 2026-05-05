@@ -1,5 +1,6 @@
 package org.gruppo3;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -8,12 +9,12 @@ public class Azienda {
     private final String sitoWeb = "www.fakezone.sola";
     private ArrayList<Utente> utenti;
     private ArrayList<Prodotto> prodotti;
-    private ArrayList<Ordine> ordiniDelGiorno;
+    private ArrayList<Ordine> ordini;
 
     public Azienda(){
         utenti = new ArrayList<>();
         prodotti = new ArrayList<>();
-        ordiniDelGiorno = new ArrayList<>();
+        ordini = new ArrayList<>();
     }
 
     public void addUtente(Utente user){
@@ -25,7 +26,7 @@ public class Azienda {
     }
 
     public void addOrdine(Ordine order){
-        ordiniDelGiorno.add(order);
+        ordini.add(order);
     }
 
     public void visualizzaDatiUtente(String codiceFiscale, String email, String numeroTelefono){
@@ -51,30 +52,181 @@ public class Azienda {
     }
 
     public void visualizzaDatiOrdine(int numeroOrdine){
-        for (int i = 0; i < ordiniDelGiorno.size(); i++){
-            if (ordiniDelGiorno.get(i).getNumeroOrdine() == numeroOrdine){
-                System.out.println(ordiniDelGiorno.get(i).toString());
+        for (int i = 0; i < ordini.size(); i++){
+            if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
+                System.out.println(ordini.get(i).toString());
             }
         }
     }
 
     public void modificaStatoOrdine(char stato, int numeroOrdine){
-        for (int i = 0; i < ordiniDelGiorno.size(); i++){
-            if (ordiniDelGiorno.get(i).getNumeroOrdine() == numeroOrdine){
-                ordiniDelGiorno.get(i).setStato(stato);
+        for (int i = 0; i < ordini.size(); i++){
+            if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
+                ordini.get(i).setStato(stato);
             }
         }
     }
 
     public void visulizzaIncasssoPeriodo(LocalDate inizio, LocalDate fine){
         double incassiPeriodo = 0;
-        for (int i = 0; i < ordiniDelGiorno.size(); i++){
-            if ((ordiniDelGiorno.get(i).getDataOrdine().isAfter(inizio) || ordiniDelGiorno.get(i).getDataOrdine().isEqual(inizio))
-                    && (ordiniDelGiorno.get(i).getDataOrdine().isBefore(fine) || ordiniDelGiorno.get(i).getDataOrdine().isEqual(fine))){
-                incassiPeriodo += ordiniDelGiorno.get(i).getImportTotale();
+        for (int i = 0; i < ordini.size(); i++){
+            if ((ordini.get(i).getDataOrdine().isAfter(inizio) || ordini.get(i).getDataOrdine().isEqual(inizio))
+                    && (ordini.get(i).getDataOrdine().isBefore(fine) || ordini.get(i).getDataOrdine().isEqual(fine))){
+                incassiPeriodo += ordini.get(i).getImportTotale();
             }
         }
 
         System.out.println("Importo totale del periodo " + inizio.toString() + "/" + fine.toString() + ": " + incassiPeriodo);
+    }
+
+    public void esportaDati(){
+        ObjectOutputStream utentiOut = null;
+        ObjectOutputStream prodottoOut = null;
+        ObjectOutputStream ordiniOut = null;
+
+        try{
+            utentiOut = new ObjectOutputStream(new FileOutputStream("datiUtenti.dat"));
+            prodottoOut = new ObjectOutputStream(new FileOutputStream("datiProdotti.dat"));
+            ordiniOut = new ObjectOutputStream(new FileOutputStream("datiOrdini.dat"));
+        } catch (FileNotFoundException fileEx){
+            System.err.println("Errore: " + fileEx.getMessage());
+            System.err.println("Files non trovati");
+        } catch (IOException ioEx){
+            System.err.println("Errore: " + ioEx.getMessage());
+            System.err.println("Errore di Input/Output");
+        }
+
+        try{
+            // Salvataggio degli utenti
+            for (int i = 0; i < utenti.size(); i++){
+                utentiOut.writeObject(utenti.get(i));
+            }
+
+            // Salvataggio prodotti
+            for (int i = 0; i < prodotti.size(); i++){
+                prodottoOut.writeObject(prodotti.get(i));
+            }
+
+            // Salvataggio ordini
+            for (int i = 0; i < ordini.size(); i++){
+                ordiniOut.writeObject(ordini.get(i));
+            }
+
+            // Chiusura dei file
+            utentiOut.close();
+            prodottoOut.close();
+            ordiniOut.close();
+
+            System.out.println("Salvataggio completato!");
+            System.out.println("Tipo di salvataggio: serializzazione");
+            System.out.println("Nomi dei file: datiUtenti.dat, datiProdotti.dat, datiOrdini.dat");
+        } catch (IOException ioEx){
+            System.err.println("Errore: " + ioEx.getMessage());
+            System.err.println("Errore di Input/Output");
+        } catch (NullPointerException nullPtrEx){
+            System.err.println("Errore: " + nullPtrEx.getMessage());
+            System.err.println("Oggetto non caricato correttamente");
+        }
+    }
+
+    public void importaDati(String sceta){
+        ObjectInputStream utentiIn = null;
+        ObjectInputStream prodottiIn = null;
+        ObjectInputStream ordiniIn = null;
+
+        try {
+            utentiIn = new ObjectInputStream(new FileInputStream("datiUtent.dat"));
+            prodottiIn = new ObjectInputStream(new FileInputStream("datiProdotti.dat"));
+            ordiniIn = new ObjectInputStream(new FileInputStream("datiOrdini.dat"));
+        } catch (FileNotFoundException fileEx){
+            System.err.println("Errore: " + fileEx.getMessage());
+            System.err.println("Files non trovati");
+        } catch (IOException ioEx){
+            System.err.println("Errore: " + ioEx.getMessage());
+            System.err.println("Errore di Input/Output");
+        }
+
+        try {
+            if (!utenti.isEmpty()) {
+                System.out.println("Eliminazione degli utenti temporanei in corso...");
+            } else if (!prodotti.isEmpty()) {
+                System.out.println("Eliminazione dei prodotti temporanei in corso...");
+            } else if (!ordini.isEmpty()) {
+                System.out.println("Eliminazione degli ordini temporanei in corso...");
+            }
+
+            while (true) {
+                Utente u = (Utente) utentiIn.readObject();
+                utenti.add(u);
+            }
+        } catch (EOFException eofException) {
+            System.out.println("Caricamento utenti completato!");
+
+            try{
+                utentiIn.close();
+            }catch (IOException ioEx){
+                System.err.println("Errore: " + ioEx.getMessage());
+                System.err.println("Errore di Input/Output");
+            }
+        } catch (ClassNotFoundException classEx){
+            System.err.println("Errore: " + classEx.getMessage());
+            System.err.println("Classe non trovata");
+        } catch (IOException ioEx){
+            System.err.println("Errore: " + ioEx.getMessage());
+            System.err.println("Errore di Input/Output");
+        } catch (NullPointerException nullPtrEx){
+            System.err.println("Errore: " +  nullPtrEx.getMessage());
+            System.err.println("Oggetto non caricato correttamente");
+        }
+
+        try{
+            while (true){
+                Prodotto p = (Prodotto) prodottiIn.readObject();
+                prodotti.add(p);
+            }
+        } catch (EOFException eofEx){
+            System.out.println("Inserimento dati prodotti completato");
+
+            try{
+                prodottiIn.close();
+            }catch (IOException ioEx){
+                System.err.println("Errore: " + ioEx.getMessage());
+                System.err.println("Errore di Input/Output");
+            }
+        }catch (ClassNotFoundException classEx){
+            System.err.println("Errore: " + classEx.getMessage());
+            System.err.println("Classe non trovata");
+        } catch (IOException ioEx){
+            System.err.println("Errore: " + ioEx.getMessage());
+            System.err.println("Errore di Input/Output");
+        } catch (NullPointerException nullPtrEx){
+            System.err.println("Errore: " +  nullPtrEx.getMessage());
+            System.err.println("Oggetto non caricato correttamente");
+        }
+
+        try{
+            while (true){
+                Ordine o = (Ordine) ordiniIn.readObject();
+                ordini.add(o);
+            }
+        }catch (EOFException eofEx){
+            System.out.println("Caricamento degli ordini comletato");
+
+            try{
+                ordiniIn.close();
+            } catch (IOException ioEx){
+                System.err.println("Errore: " + ioEx.getMessage());
+                System.err.println("Errore di Input/Output");
+            }
+        }catch (ClassNotFoundException classEx){
+            System.err.println("Errore: " + classEx.getMessage());
+            System.err.println("Classe non trovata");
+        } catch (IOException ioEx){
+            System.err.println("Errore: " + ioEx.getMessage());
+            System.err.println("Errore di Input/Output");
+        } catch (NullPointerException nullPtrEx){
+            System.err.println("Errore: " +  nullPtrEx.getMessage());
+            System.err.println("Oggetto non caricato correttamente");
+        }
     }
 }

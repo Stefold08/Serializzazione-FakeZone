@@ -7,19 +7,20 @@
       <Entity type="Class">
         <Name>Utente</Name>
         <Access>Public</Access>
-        <Location left="575" top="10" />
-        <Size width="1052" height="315" />
+        <Location left="1019" top="27" />
+        <Size width="956" height="332" />
         <Collapsed>False</Collapsed>
-        <Member type="Field">private String password</Member>
+        <Member type="Field">private static final long serialVersionUID</Member>
         <Member type="Field">private String nome</Member>
         <Member type="Field">private String cognome</Member>
         <Member type="Field">private LocalDate dataNascita</Member>
         <Member type="Field">private char sesso</Member>
         <Member type="Field">private String codiceFiscale</Member>
         <Member type="Field">private String email</Member>
-        <Member type="Field">private String indirizzoAbitazione</Member>
-        <Member type="Field">private String numeroTelefono</Member>
-        <Member type="Constructor">public Utente(String password, String nome, String cognome, LocalDate dataNascita, char sesso, String codiceFiscale, String email, String indirizzoAbitazione, String numeroTelefono)</Member>
+        <Member type="Field">private String password</Member>
+        <Member type="Field">private String indirizzo</Member>
+        <Member type="Field">private String numeroTel</Member>
+        <Member type="Constructor">private Utente(String pasword, String nome, String cognome, LocalDate dataNascita, char sesso, String codiceFiscale, String email, String indirizzo, String numeroTel)</Member>
         <Member type="Method">public String toString()</Member>
         <Member type="Method">public String getCodiceFiscale()</Member>
         <Member type="Method">public String getEmail()</Member>
@@ -29,38 +30,41 @@
       <Entity type="Class">
         <Name>Prodotto</Name>
         <Access>Public</Access>
-        <Location left="594" top="405" />
-        <Size width="356" height="247" />
+        <Location left="594" top="449" />
+        <Size width="482" height="281" />
         <Collapsed>False</Collapsed>
+        <Member type="Field">private static final long serialVersionUID</Member>
         <Member type="Field">private String codice</Member>
-        <Member type="Field">private String descizione</Member>
-        <Member type="Field">private ArrayList&lt;String&gt; pathImmagini</Member>
-        <Member type="Field">private double costo</Member>
         <Member type="Field">private String nomeProdotto</Member>
-        <Member type="Constructor">public Prodotto(String codice, String descrizione, double costo, String nomeProdotto)</Member>
+        <Member type="Field">private String descizione</Member>
+        <Member type="Field">private double costo</Member>
+        <Member type="Field">private ArrayList&lt;String&gt; pathImmagini</Member>
+        <Member type="Constructor">public Prodotto(String codice, String descirzione, String nomeProdotto, double costo)</Member>
         <Member type="Method">public String toString()</Member>
         <Member type="Method">public void aggiungiImmagine(String path)</Member>
         <Member type="Method">public double getCosto()</Member>
         <Member type="Method">public String getCodice()</Member>
+        <Member type="Method">public String getDettagliProdottoOrdine()</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
         <Name>Ordine</Name>
         <Access>Public</Access>
-        <Location left="1019" top="405" />
-        <Size width="736" height="315" />
+        <Location left="1163" top="449" />
+        <Size width="736" height="332" />
         <Collapsed>False</Collapsed>
+        <Member type="Field">private static final long serialVersionUID</Member>
         <Member type="Field">private LocalDate dataOrdine</Member>
         <Member type="Field">private ArrayList&lt;DettagliOrdine&gt; prodotti</Member>
         <Member type="Field">private double importoTotale</Member>
         <Member type="Field">private char stato</Member>
         <Member type="Field">private Utente utente</Member>
         <Member type="Field">private int numeroOrdine</Member>
-        <Member type="Constructor">public Ordine(LocalDate dataOrdine, double importoTotale, char stato, Utente utente, int numeroOrdine)</Member>
+        <Member type="Constructor">public Ordine(LocalDate dataOrdine, double importTotale, Utente utente, int numeroOrdine)</Member>
         <Member type="Method">public String toString()</Member>
-        <Member type="Method">public void addProdottoDettagli()</Member>
         <Member type="Method">public int getNumeroOrdine()</Member>
         <Member type="Method">public char getStato()</Member>
+        <Member type="Method">public void addProdottoDettagli()</Member>
         <Member type="Method">public void setStato()</Member>
         <Member type="Method">public void calcolaImportoTotale()</Member>
         <Member type="Method">public double getImportoTotale()</Member>
@@ -69,14 +73,14 @@
       <Entity type="Class">
         <Name>Azienda</Name>
         <Access>Public</Access>
-        <Location left="296" top="27" />
-        <Size width="249" height="349" />
+        <Location left="330" top="27" />
+        <Size width="522" height="349" />
         <Collapsed>False</Collapsed>
-        <Member type="Field">private String nome</Member>
-        <Member type="Field">private String sitoWeb</Member>
+        <Member type="Field">private final String nome</Member>
+        <Member type="Field">private final String sitoWeb</Member>
         <Member type="Field">private ArrayList&lt;Utente&gt; utenti</Member>
         <Member type="Field">private ArrayList&lt;Prodotto&gt; prodotti</Member>
-        <Member type="Field">private ArrayList&lt;Ordine&gt; ordiniDelGiorno</Member>
+        <Member type="Field">private ArrayList&lt;Ordine&gt; ordini</Member>
         <Member type="Constructor">public Azienda()</Member>
         <Member type="Method">public void addUtente(Utente user)</Member>
         <Member type="Method">public void addProdotto(Prodotto product)</Member>
@@ -85,15 +89,15 @@
         <Member type="Method">public void visualizzaDatiProdotto(String codice)</Member>
         <Member type="Method">public void visualizzaDatiOrdine(int numeroOrdine)</Member>
         <Member type="Method">public void modificaStatoOrdine(char stato, int numeroOrdine)</Member>
-        <Member type="Method">public void visualizzaIncassoPeriodo()</Member>
+        <Member type="Method">public void visulizzaIncasssoPeriodo(LocalDate inizio, LocalDate fine)</Member>
         <Member type="Method">public int esportaDati()</Member>
-        <Member type="Method">public int importaDati()</Member>
+        <Member type="Method">public int importaDati(String scelta)</Member>
         <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
         <Name>Recenzione</Name>
         <Access>Public</Access>
-        <Location left="10" top="428" />
+        <Location left="10" top="498" />
         <Size width="506" height="162" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private int stelle</Member>
@@ -127,7 +131,7 @@
       <Entity type="Class">
         <Name>DettagliOrdine</Name>
         <Access>Public</Access>
-        <Location left="660" top="744" />
+        <Location left="594" top="818" />
         <Size width="379" height="196" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private Prodotto prodotto</Member>
@@ -142,6 +146,8 @@
     </Entities>
     <Relationships>
       <Relationship type="Dependency" first="5" second="3">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -150,81 +156,89 @@
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="3" second="0">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>570</X>
+          <X>877</X>
           <Y>190</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="3" second="2">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>541</X>
+          <X>575</X>
           <Y>384</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="3" second="1">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>586</X>
+          <X>620</X>
           <Y>397</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="4">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="0" second="4">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>600</X>
-          <Y>350</Y>
+          <X>1044</X>
+          <Y>384</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
           <X>532</X>
-          <Y>403</Y>
+          <Y>473</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Dependency" first="2" second="0">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="False">
-          <X>1450</X>
-          <Y>358</Y>
+          <X>1894</X>
+          <Y>392</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Dependency" first="6" second="1">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
       <Relationship type="Association" first="6" second="2">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
-          <X>1099</X>
-          <Y>797</Y>
+          <X>1033</X>
+          <Y>871</Y>
         </BendPoint>
         <BendPoint relativeToStartShape="False">
-          <X>1156</X>
-          <Y>765</Y>
+          <X>1300</X>
+          <Y>826</Y>
         </BendPoint>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
