@@ -125,4 +125,32 @@ public class MainProgram {
 
         azienda.visualizzaDatiUtente(codiceFiscale, email, numeroTelefono);
     }
+
+    private static void aggiungiProdotto(){
+        Scanner in = new Scanner(System.in);
+        String codice, nomeProdotto, descrizione, scelta = null;
+        double costo;
+        Prodotto prodotto;
+
+        System.out.print("Codice: ");
+        codice = in.nextLine();
+        System.out.print("Nome: ");
+        nomeProdotto = in.nextLine();
+        System.out.print("Costo: ");
+        costo = in.nextDouble();
+        in.nextLine();
+        System.out.print("Descrizione: ");
+        descrizione = in.nextLine();
+
+        prodotto = new Prodotto(codice, descrizione, nomeProdotto, costo);
+
+        do{
+            System.out.print("Percorco immagine: ");
+            prodotto.aggiungiImmagine(in.nextLine());
+            System.out.print("Vuoi aggiungere un altra immagine? (y/n): ");
+            scelta = in.nextLine();
+        }while (scelta.equals("y"));
+
+        azienda.addProdotto(prodotto);
+    }
 }
