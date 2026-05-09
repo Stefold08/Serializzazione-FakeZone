@@ -202,6 +202,8 @@ public class MainProgram {
                 scelta = in.nextLine();
             }
         }while (scelta.equals("y"));
+
+        azienda.addOrdine(ordine);
     }
 
     private static void modificaStatoOrdine(){
