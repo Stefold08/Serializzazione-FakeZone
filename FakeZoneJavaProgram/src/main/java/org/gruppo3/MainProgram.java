@@ -110,4 +110,19 @@ public class MainProgram {
 
         azienda.addUtente(new Utente(password, nome, cognome, dataNascita, sesso, codiceFiscale, email, indirizzo, numeroTelefono));
     }
+
+    private static void visualizzaDatiUtente(){
+        Scanner in = new Scanner(System.in);
+        String email, codiceFiscale, numeroTelefono;
+
+        System.out.println("Ricerca utente (puoi lasciare campi vuoti)");
+        System.out.print("Email: ");
+        email = in.nextLine();
+        System.out.print("Codice fiscale: ");
+        codiceFiscale = in.nextLine();
+        System.out.print("Numero di telefono: ");
+        numeroTelefono = in.nextLine();
+
+        azienda.visualizzaDatiUtente(codiceFiscale, email, numeroTelefono);
+    }
 }
