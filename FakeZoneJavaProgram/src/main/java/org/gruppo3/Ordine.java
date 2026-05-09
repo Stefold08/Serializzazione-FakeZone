@@ -21,6 +21,7 @@ public class Ordine implements Serializable{
     }
 
     public String toString(){
+        calcolaImportoTotale();
         String messaggio = null;
 
         messaggio = "la data dell'ordine e': " + dataOrdine + "\n l'importo dell'ordine e': " + importTotale + "\n l'utente che ha fatto l'ordine e': " + utente + "\n il numero dell'ordine e': " + numeroOrdine;
@@ -44,7 +45,7 @@ public class Ordine implements Serializable{
         this.stato = stato;
     }
 
-    public void calcolaImportoTotale(){
+    private void calcolaImportoTotale(){
         double importo = 0;
         double costoQuantita = 0;
         for (int i = 0; i < dettagliProdotti.size(); i++){

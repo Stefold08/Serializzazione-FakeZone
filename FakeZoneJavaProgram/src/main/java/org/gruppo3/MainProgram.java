@@ -204,6 +204,16 @@ public class MainProgram {
         }while (scelta.equals("y"));
     }
 
+    private static void informazioniOrdine(){
+        Scanner in = new Scanner(System.in);
+        int numeroOrdine;
+
+        System.out.print("Numero ordine: ");
+        numeroOrdine = in.nextInt();
+
+        azienda.visualizzaDatiOrdine(numeroOrdine);
+    }
+
     private static Utente ricercaUtente(){
         Scanner in = new Scanner(System.in);
         String email, codiceFiscale, numeroTelefono;
