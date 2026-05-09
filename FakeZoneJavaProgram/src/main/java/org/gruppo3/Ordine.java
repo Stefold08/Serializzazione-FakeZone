@@ -18,13 +18,14 @@ public class Ordine implements Serializable{
         this.dataOrdine = dataOrdine;
         this.utente = utente;
         this.numeroOrdine = numeroOrdine;
+        this.dettagliProdotti = new ArrayList<>();
     }
 
     public String toString(){
         calcolaImportoTotale();
         String messaggio = null;
 
-        messaggio = "la data dell'ordine e': " + dataOrdine + "\n l'importo dell'ordine e': " + importTotale + "\n l'utente che ha fatto l'ordine e': " + utente + "\n il numero dell'ordine e': " + numeroOrdine;
+        messaggio = "La data dell'ordine e': " + dataOrdine + "\nL'importo dell'ordine e': " + importTotale + "\nL'utente che ha fatto l'ordine e': " + utente.toString() + "\nIl numero dell'ordine e': " + numeroOrdine + "\n";
 
         for (int i = 0; i < dettagliProdotti.size(); i++){
             messaggio += dettagliProdotti.toString() + "\n";

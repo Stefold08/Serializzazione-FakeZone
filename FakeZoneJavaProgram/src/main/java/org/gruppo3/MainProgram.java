@@ -175,14 +175,13 @@ public class MainProgram {
         double costoProdotto;
         String scelta = null;
 
-        if (!ricercaUtente().equals(null)){
-            user = ricercaUtente();
-        }else{
+        user = ricercaUtente();
+        if (user.equals(null)){
             System.out.println("Impossibile ottenere l'utente!");
             return;
         }
 
-        System.out.print("Data ordine (MM/GG/AAAA): ");
+        System.out.print("Data ordine (AAAA-MM-GG): ");
         dataOrdine = LocalDate.parse(in.nextLine());
         numeroOrdine = azienda.generaNumeroOrdine();
 
@@ -195,6 +194,7 @@ public class MainProgram {
 
                 System.out.print("Quantità: ");
                 quantita = in.nextInt();
+                in.nextLine();
 
                 dettagli = new DettagliOrdine(product, costoProdotto, quantita);
                 ordine.setDettagliProdotti(dettagli);
