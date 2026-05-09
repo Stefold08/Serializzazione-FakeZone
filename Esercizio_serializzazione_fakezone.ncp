@@ -112,22 +112,22 @@
       <Entity type="Class">
         <Name>MainProgram</Name>
         <Access>Public</Access>
-        <Location left="10" top="27" />
+        <Location left="10" top="13" />
         <Size width="215" height="332" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private static Azienda azienda</Member>
         <Member type="Method">public static void main(String[] args)</Member>
-        <Member type="Method">public static int menu()</Member>
-        <Member type="Method">public static void aggiungiUtente()</Member>
-        <Member type="Method">public static void visualizzaDatiUtente()</Member>
-        <Member type="Method">public static void aggiungiProdotto()</Member>
-        <Member type="Method">public static void informazioniProdotto()</Member>
-        <Member type="Method">public static void inserisciOrdine()</Member>
-        <Member type="Method">public static void informazioniOrdine()</Member>
-        <Member type="Method">public static void modificaStatoOrdine()</Member>
-        <Member type="Method">public static void visualizzaIncassoPeriodo()</Member>
-        <Member type="Method">public static void esporta()</Member>
-        <Member type="Method">public static void importa()</Member>
+        <Member type="Method">private static int menu()</Member>
+        <Member type="Method">private static void aggiungiUtente()</Member>
+        <Member type="Method">private static void visualizzaDatiUtente()</Member>
+        <Member type="Method">private static void aggiungiProdotto()</Member>
+        <Member type="Method">private static void informazioniProdotto()</Member>
+        <Member type="Method">private static void inserisciOrdine()</Member>
+        <Member type="Method">private static void informazioniOrdine()</Member>
+        <Member type="Method">private static void modificaStatoOrdine()</Member>
+        <Member type="Method">private static void visualizzaIncassoPeriodo()</Member>
+        <Member type="Method">private static void esporta()</Member>
+        <Member type="Method">private static void importa()</Member>
         <Member type="Method">private static Utente ricercaUtente()</Member>
         <Member type="Method">private static Prodotto ricercaProdotto()</Member>
         <Modifier>None</Modifier>
@@ -154,7 +154,7 @@
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
           <X>250</X>
-          <Y>138</Y>
+          <Y>124</Y>
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="3" second="0">
