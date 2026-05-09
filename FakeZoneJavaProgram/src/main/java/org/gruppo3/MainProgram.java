@@ -8,10 +8,53 @@ public class MainProgram {
     private static Azienda azienda;
 
     static void main(String[] args){
+        int scelta = 0;
 
+        do{
+            scelta = menu();
+
+            switch (scelta){
+                case 1:
+                    aggiungiUtente();
+                    break;
+                case 2:
+                    visualizzaDatiUtente();
+                    break;
+                case 3:
+                    aggiungiProdotto();
+                    break;
+                case 4:
+                    informazioniProdotto();
+                    break;
+                case 5:
+                    insericiOrdine();
+                    break;
+                case 6:
+                    informazioniOrdine();
+                    break;
+                case 7:
+                    modificaStatoOrdine();
+                    break;
+                case 8:
+                    visualizzaIncassoPeriodo();
+                    break;
+                case 9:
+                    esporta();
+                    break;
+                case 10:
+                    importa();
+                    break;
+                case 0:
+                    System.out.println("Uscita dal programma in corso...");
+                    break;
+                default:
+                    System.out.println("Scelta non valida!");
+                    break;
+            }
+        }while (scelta != 0);
     }
 
-    private int menu(){
+    private static int menu(){
         int scelta = 0;
         Scanner in = new Scanner(System.in);
 
