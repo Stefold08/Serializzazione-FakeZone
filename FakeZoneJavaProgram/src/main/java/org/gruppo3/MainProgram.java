@@ -230,6 +230,18 @@ public class MainProgram {
         azienda.visualizzaDatiOrdine(numeroOrdine);
     }
 
+    private static void visualizzaIncassoPeriodo(){
+        Scanner in = new Scanner(System.in);
+        LocalDate dataInizio, dataFine;
+
+        System.out.print("Data inizio (MM/GG/AAAA): ");
+        dataInizio = LocalDate.parse(in.nextLine());
+        System.out.print("Data fine (MM/GG/AAAA): ");
+        dataFine = LocalDate.parse(in.nextLine());
+
+        azienda.visulizzaIncasssoPeriodo(dataInizio, dataFine);
+    }
+
     private static Utente ricercaUtente(){
         Scanner in = new Scanner(System.in);
         String email, codiceFiscale, numeroTelefono;
