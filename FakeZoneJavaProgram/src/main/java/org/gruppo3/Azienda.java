@@ -129,7 +129,7 @@ public class Azienda {
         }
     }
 
-    public void importaDati(String sceta){
+    public void importaDati(String scelta){
         ObjectInputStream utentiIn = null;
         ObjectInputStream prodottiIn = null;
         ObjectInputStream ordiniIn = null;
@@ -147,12 +147,14 @@ public class Azienda {
         }
 
         try {
-            if (!utenti.isEmpty()) {
-                System.out.println("Eliminazione degli utenti temporanei in corso...");
-            } else if (!prodotti.isEmpty()) {
-                System.out.println("Eliminazione dei prodotti temporanei in corso...");
-            } else if (!ordini.isEmpty()) {
-                System.out.println("Eliminazione degli ordini temporanei in corso...");
+            if (scelta.equals("y")) {
+                if (!utenti.isEmpty()) {
+                    System.out.println("Eliminazione degli utenti temporanei in corso...");
+                } else if (!prodotti.isEmpty()) {
+                    System.out.println("Eliminazione dei prodotti temporanei in corso...");
+                } else if (!ordini.isEmpty()) {
+                    System.out.println("Eliminazione degli ordini temporanei in corso...");
+                }
             }
 
             while (true) {

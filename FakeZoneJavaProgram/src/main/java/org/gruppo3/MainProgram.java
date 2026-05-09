@@ -41,7 +41,7 @@ public class MainProgram {
                     visualizzaIncassoPeriodo();
                     break;
                 case 9:
-                    esporta();
+                    azienda.esportaDati();
                     break;
                 case 10:
                     importa();
@@ -240,6 +240,16 @@ public class MainProgram {
         dataFine = LocalDate.parse(in.nextLine());
 
         azienda.visulizzaIncasssoPeriodo(dataInizio, dataFine);
+    }
+
+    private static void importa(){
+        Scanner in = new Scanner(System.in);
+        String scelta;
+
+        System.out.print("Eliminare i dati temporanei? (y/n): ");
+        scelta = in.nextLine();
+
+        azienda.importaDati(scelta);
     }
 
     private static Utente ricercaUtente(){
