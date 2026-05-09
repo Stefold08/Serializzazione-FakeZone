@@ -14,9 +14,8 @@ public class Ordine implements Serializable{
     private Utente utente;
     private int numeroOrdine;
 
-    public Ordine(LocalDate dataOrdine, double importTotale, Utente utente, int numeroOrdine){
+    public Ordine(LocalDate dataOrdine, Utente utente, int numeroOrdine){
         this.dataOrdine = dataOrdine;
-        this.importTotale = importTotale;
         this.utente = utente;
         this.numeroOrdine = numeroOrdine;
     }
@@ -62,5 +61,9 @@ public class Ordine implements Serializable{
 
     public LocalDate getDataOrdine(){
         return dataOrdine;
+    }
+
+    public void setDettagliProdotti(DettagliOrdine dettagli){
+        dettagliProdotti.add(dettagli);
     }
 }

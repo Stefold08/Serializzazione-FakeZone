@@ -163,4 +163,69 @@ public class MainProgram {
 
         azienda.visualizzaDatiProdotto(codice);
     }
+
+    private static void insericiOrdine(){
+        Scanner in = new Scanner(System.in);
+        Utente user;
+        Prodotto product;
+        Ordine ordine;
+        DettagliOrdine dettagli;
+        LocalDate dataOrdine;
+        int numeroOrdine, quantita;
+        double costoProdotto;
+        String scelta = null;
+
+        if (!ricercaUtente().equals(null)){
+            user = ricercaUtente();
+        }else{
+            System.out.println("Impossibile ottenere l'utente!");
+            return;
+        }
+
+        System.out.print("Data ordine (MM/GG/AAAA): ");
+        dataOrdine = LocalDate.parse(in.nextLine());
+        numeroOrdine = azienda.generaNumeroOrdine();
+
+        ordine = new Ordine(dataOrdine, user, numeroOrdine);
+
+        do{
+            product = ricercaProdotto();
+            if (!product.equals(null)){
+                costoProdotto = product.getCosto();
+
+                System.out.print("Quantità: ");
+                quantita = in.nextInt();
+
+                dettagli = new DettagliOrdine(product, costoProdotto, quantita);
+                ordine.setDettagliProdotti(dettagli);
+                System.out.print("Vuoi aggiungere un altro prodotto? (y/n): ");
+                scelta = in.nextLine();
+            }
+        }while (scelta.equals("y"));
+    }
+
+    private static Utente ricercaUtente(){
+        Scanner in = new Scanner(System.in);
+        String email, codiceFiscale, numeroTelefono;
+
+        System.out.println("Ricerca utente (puoi lasciare campi vuoti)");
+        System.out.print("Email: ");
+        email = in.nextLine();
+        System.out.print("Codice fiscale: ");
+        codiceFiscale = in.nextLine();
+        System.out.print("Numero di telefono: ");
+        numeroTelefono = in.nextLine();
+
+        return azienda.getUtente(email, codiceFiscale, numeroTelefono);
+    }
+
+    private static Prodotto ricercaProdotto(){
+        Scanner in = new Scanner(System.in);
+        String codice;
+
+        System.out.print("Codice prodotto: ");
+        codice = in.nextLine();
+
+        return azienda.getProdotto(codice);
+    }
 }

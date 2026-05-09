@@ -229,4 +229,36 @@ public class Azienda {
             System.err.println("Oggetto non caricato correttamente");
         }
     }
+
+    public Utente getUtente(String email, String codiceFiscale, String numeroTelefono){
+        for (int i = 0; i < utenti.size(); i++){
+            if (utenti.get(i).getCodiceFiscale().equals(codiceFiscale)){ // Controllo con codice fiscale
+                return utenti.get(i);
+            } else if (utenti.get(i).getEmail().equals(email)) { // Controllo con email
+                return utenti.get(i);
+            }else if (utenti.get(i).getNumeroTel().equals(numeroTelefono)){ // Controllo con numero di telefono
+                return utenti.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Prodotto getProdotto(String codice){
+        for (int i = 0; i < prodotti.size(); i++){
+            if (prodotti.get(i).getCodice().equals(codice)){
+                return prodotti.get(i);
+            }
+        }
+
+        return null;
+    }
+
+    public int generaNumeroOrdine(){
+        int numero = -1;
+        for (int i = 0; i < ordini.size(); i++){
+            numero = ordini.get(i).getNumeroOrdine();
+        }
+
+        return numero + 1;
+    }
 }
