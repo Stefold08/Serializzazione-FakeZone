@@ -204,6 +204,20 @@ public class MainProgram {
         }while (scelta.equals("y"));
     }
 
+    private static void modificaStatoOrdine(){
+        Scanner in = new Scanner(System.in);
+        String stato;
+        int numeroOrdine;
+
+        System.out.print("Numero ordine: ");
+        numeroOrdine = in.nextInt();
+        in.nextLine();
+        System.out.print("Nuovo stato ordine: ");
+        stato = in.nextLine();
+
+        azienda.modificaStatoOrdine(stato, numeroOrdine);
+    }
+
     private static void informazioniOrdine(){
         Scanner in = new Scanner(System.in);
         int numeroOrdine;

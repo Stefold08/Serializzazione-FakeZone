@@ -59,7 +59,7 @@ public class Azienda {
         }
     }
 
-    public void modificaStatoOrdine(char stato, int numeroOrdine){
+    public void modificaStatoOrdine(String stato, int numeroOrdine){
         for (int i = 0; i < ordini.size(); i++){
             if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
                 ordini.get(i).setStato(stato);

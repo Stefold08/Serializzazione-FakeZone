@@ -10,7 +10,7 @@ public class Ordine implements Serializable{
     private LocalDate dataOrdine;
     private ArrayList<DettagliOrdine> dettagliProdotti;
     private double importTotale;
-    private char stato;
+    private String stato;
     private Utente utente;
     private int numeroOrdine;
 
@@ -37,11 +37,11 @@ public class Ordine implements Serializable{
         return numeroOrdine;
     }
 
-    public char getStato(){
+    public String getStato(){
         return stato;
     }
 
-    public void setStato(char stato){
+    public void setStato(String stato){
         this.stato = stato;
     }
 
