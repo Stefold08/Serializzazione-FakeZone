@@ -9,13 +9,13 @@ public class Utente implements Serializable{
     private String nome;
     private String cognome;
     private LocalDate dataNascita;
-    private char sesso;
+    private String sesso;
     private String codiceFiscale;
     private String email;
     private String indirizzo;
     private String numeroTel;
 
-    public Utente(String pasword, String nome, String cognome, LocalDate dataNascita, char sesso, String codiceFiscale, String email, String indirizzo, String numeroTel){
+    public Utente(String pasword, String nome, String cognome, LocalDate dataNascita, String sesso, String codiceFiscale, String email, String indirizzo, String numeroTel){
         this.password = pasword;
         this.nome = nome;
         this.cognome = cognome;

@@ -3,6 +3,8 @@ package org.gruppo3;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import java.time.LocalDate;
+
 public class MainProgram {
 
     private static Azienda azienda;
@@ -80,5 +82,32 @@ public class MainProgram {
             System.err.println("Input non valido");
             return -1;
         }
+    }
+
+    private static void aggiungiUtente(){
+        Scanner in = new Scanner(System.in);
+        String nome, cognome, sesso, password, codiceFiscale, email, indirizzo, numeroTelefono;
+        LocalDate dataNascita;
+
+        System.out.print("Nome: ");
+        nome = in.nextLine();
+        System.out.print("Cognome: ");
+        cognome = in.nextLine();
+        System.out.print("Sesso: ");
+        sesso = in.nextLine();
+        System.out.print("Data di nascita (MM/GG/AAAA): ");
+        dataNascita = LocalDate.parse(in.nextLine());
+        System.out.print("Codice fiscale: ");
+        codiceFiscale = in.nextLine();
+        System.out.print("Indirizzo/Via: ");
+        indirizzo = in.nextLine();
+        System.out.print("Numero di telefono: ");
+        numeroTelefono = in.nextLine();
+        System.out.print("Email: ");
+        email = in.nextLine();
+        System.out.print("Password: ");
+        password = in.nextLine();
+
+        azienda.addUtente(new Utente(password, nome, cognome, dataNascita, sesso, codiceFiscale, email, indirizzo, numeroTelefono));
     }
 }

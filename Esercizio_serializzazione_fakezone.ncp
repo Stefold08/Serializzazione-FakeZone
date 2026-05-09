@@ -8,19 +8,19 @@
         <Name>Utente</Name>
         <Access>Public</Access>
         <Location left="1019" top="27" />
-        <Size width="956" height="332" />
+        <Size width="964" height="332" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private static final long serialVersionUID</Member>
         <Member type="Field">private String nome</Member>
         <Member type="Field">private String cognome</Member>
         <Member type="Field">private LocalDate dataNascita</Member>
-        <Member type="Field">private char sesso</Member>
+        <Member type="Field">private String sesso</Member>
         <Member type="Field">private String codiceFiscale</Member>
         <Member type="Field">private String email</Member>
         <Member type="Field">private String password</Member>
         <Member type="Field">private String indirizzo</Member>
         <Member type="Field">private String numeroTel</Member>
-        <Member type="Constructor">private Utente(String pasword, String nome, String cognome, LocalDate dataNascita, char sesso, String codiceFiscale, String email, String indirizzo, String numeroTel)</Member>
+        <Member type="Constructor">private Utente(String pasword, String nome, String cognome, LocalDate dataNascita, String sesso, String codiceFiscale, String email, String indirizzo, String numeroTel)</Member>
         <Member type="Method">public String toString()</Member>
         <Member type="Method">public String getCodiceFiscale()</Member>
         <Member type="Method">public String getEmail()</Member>
@@ -146,8 +146,6 @@
     </Entities>
     <Relationships>
       <Relationship type="Dependency" first="5" second="3">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -156,8 +154,6 @@
         </BendPoint>
       </Relationship>
       <Relationship type="Association" first="3" second="0">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -168,8 +164,6 @@
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="3" second="2">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -180,8 +174,6 @@
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="3" second="1">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -192,16 +184,12 @@
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="1" second="4">
-        <Label>
-        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <Direction>Unidirectional</Direction>
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Association" first="0" second="4">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -216,8 +204,6 @@
         <AssociationType>Aggregation</AssociationType>
       </Relationship>
       <Relationship type="Dependency" first="2" second="0">
-        <Label>
-        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="False">
@@ -226,10 +212,14 @@
         </BendPoint>
       </Relationship>
       <Relationship type="Dependency" first="6" second="1">
+        <Label>
+        </Label>
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
       <Relationship type="Association" first="6" second="2">
+        <Label>
+        </Label>
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
