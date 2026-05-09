@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class MainProgram {
 
-    private static Azienda azienda;
+    private static Azienda azienda = new Azienda();
 
     public static void main(String[] args){
         int scelta = 0;
@@ -95,7 +95,7 @@ public class MainProgram {
         cognome = in.nextLine();
         System.out.print("Sesso: ");
         sesso = in.nextLine();
-        System.out.print("Data di nascita (MM/GG/AAAA): ");
+        System.out.print("Data di nascita (AAAA-MM-GG): ");
         dataNascita = LocalDate.parse(in.nextLine());
         System.out.print("Codice fiscale: ");
         codiceFiscale = in.nextLine();
