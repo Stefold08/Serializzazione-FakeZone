@@ -153,4 +153,14 @@ public class MainProgram {
 
         azienda.addProdotto(prodotto);
     }
+
+    private static void informazioniProdotto(){
+        Scanner in = new Scanner(System.in);
+        String codice;
+
+        System.out.print("Codice prodotto: ");
+        codice = in.nextLine();
+
+        azienda.visualizzaDatiProdotto(codice);
+    }
 }
