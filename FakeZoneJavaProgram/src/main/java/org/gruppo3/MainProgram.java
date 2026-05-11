@@ -1,5 +1,6 @@
 package org.gruppo3;
 
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -181,11 +182,18 @@ public class MainProgram {
             return;
         }
 
-        System.out.print("Data ordine (AAAA-MM-GG): ");
-        dataOrdine = LocalDate.parse(in.nextLine());
-        numeroOrdine = azienda.generaNumeroOrdine();
+        try{
+            System.out.print("Data ordine (AAAA-MM-GG): ");
+            dataOrdine = LocalDate.parse(in.nextLine());
+            numeroOrdine = azienda.generaNumeroOrdine();
 
-        ordine = new Ordine(dataOrdine, user, numeroOrdine);
+            ordine = new Ordine(dataOrdine, user, numeroOrdine);
+        }catch (DateTimeParseException dateTimeParseEx){
+            System.err.println("Errore: " + dateTimeParseEx.getMessage());
+            System.err.println("Formato data valido: ANNO-Mese-Giorno");
+            return;
+        }
+
 
         do{
             product = ricercaProdotto();
