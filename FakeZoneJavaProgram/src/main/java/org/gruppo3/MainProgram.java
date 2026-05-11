@@ -212,6 +212,9 @@ public class MainProgram {
         }while (scelta.equals("y"));
 
         azienda.addOrdine(ordine);
+        ordine.setStato("In approvazione");
+        System.out.println("Il numero dell'ordine è: " + ordine.getNumeroOrdine());
+        System.out.println("Lo stato dell'ordine è: " + ordine.getStato());
     }
 
     private static void modificaStatoOrdine(){

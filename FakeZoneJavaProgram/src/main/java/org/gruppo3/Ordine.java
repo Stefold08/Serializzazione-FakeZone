@@ -50,8 +50,12 @@ public class Ordine implements Serializable{
         double importo = 0;
         double costoQuantita = 0;
         for (int i = 0; i < dettagliProdotti.size(); i++){
-            costoQuantita += dettagliProdotti.get(i).getQuantita();
-            importo += dettagliProdotti.get(i).getCosto() * costoQuantita;
+            if (dettagliProdotti.get(i).getQuantita() > 1){
+                costoQuantita += dettagliProdotti.get(i).getQuantita();
+                importo += dettagliProdotti.get(i).getCosto() * costoQuantita;
+            }else{
+                importo += dettagliProdotti.get(i).getCosto();
+            }
         }
 
         importTotale = importo;
