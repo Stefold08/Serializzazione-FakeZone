@@ -30,33 +30,16 @@ public class Azienda {
     }
 
     public void visualizzaDatiUtente(String codiceFiscale, String email, String numeroTelefono){
-        for (int i = 0; i < utenti.size(); i++){
-            if (utenti.get(i).getCodiceFiscale().equals(codiceFiscale)){ // Controllo con codice fiscale
-                System.out.println(utenti.get(i).toString());
-            } else if (utenti.get(i).getEmail().equals(email)) { // Controllo con email
-                System.out.println(utenti.get(i).toString());
-            }else if (utenti.get(i).getNumeroTel().equals(numeroTelefono)){ // Controllo con numero di telefono
-                System.out.println(utenti.get(i).toString());
-            }else{
-                System.out.println("Utente non trovato / inesistente!");
-            }
-        }
+        System.out.println(getUtente(email, codiceFiscale, numeroTelefono).toString());
     }
 
     public void visualizzaDatiProdotto(String codice){
-        for (int i = 0; i < prodotti.size(); i++){
-            if (prodotti.get(i).getCodice().equals(codice)){
-                System.out.println(prodotti.get(i).toString());
-            }
-        }
+        System.out.println(getProdotto(codice).toString());
+        getProdotto(codice).visualizzaRecensioni();
     }
 
     public void visualizzaDatiOrdine(int numeroOrdine){
-        for (int i = 0; i < ordini.size(); i++){
-            if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
-                System.out.println(ordini.get(i).toString());
-            }
-        }
+        System.out.println(get);
     }
 
     public void modificaStatoOrdine(String stato, int numeroOrdine){
@@ -253,6 +236,14 @@ public class Azienda {
         }
 
         return null;
+    }
+
+    public Ordine getOrdine(int numeroOrdine){
+        for (int i = 0; i < ordini.size(); i++){
+            if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
+                return ordini.get(i);
+            }
+        }
     }
 
     public int generaNumeroOrdine(){
