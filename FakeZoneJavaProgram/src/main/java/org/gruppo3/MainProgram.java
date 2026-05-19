@@ -247,6 +247,36 @@ public class MainProgram {
         azienda.visualizzaDatiOrdine(numeroOrdine);
     }
 
+    private static void aggiungiRecensione(){
+        Scanner in = new Scanner(System.in);
+        Utente user;
+        Prodotto product;
+        Recenzione rec;
+        String descrizione;
+        int valutazione;
+
+        user = ricercaUtente();
+        if (user == null){
+            System.out.println("Impossibile ottenere l'utente");
+            return;
+        }
+
+        product = ricercaProdotto();
+        if (product == null){
+            System.out.println("Impossibile trovare il prodotto");
+        }else{
+            System.out.print("Valutazione (0-5): ");
+            valutazione = in.nextInt();
+            in.nextLine();
+            System.out.println("Descrizione: ");
+            descrizione = in.nextLine();
+
+            rec = new Recenzione(valutazione, LocalDate.now(), user, descrizione);
+
+            product.aggiungiRecensione(rec);
+        }
+    }
+
     private static void visualizzaIncassoPeriodo(){
         Scanner in = new Scanner(System.in);
         LocalDate dataInizio, dataFine;
