@@ -205,7 +205,7 @@ public class MainProgram {
 
         do{
             product = ricercaProdotto();
-            if (!product.equals(null)){
+            if (product != null){
                 costoProdotto = product.getCosto();
 
                 System.out.print("Quantità: ");
