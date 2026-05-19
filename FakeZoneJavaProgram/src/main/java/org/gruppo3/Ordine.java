@@ -10,21 +10,22 @@ public class Ordine implements Serializable{
     private LocalDate dataOrdine;
     private ArrayList<DettagliOrdine> dettagliProdotti;
     private double importTotale;
-    private char stato;
+    private String stato;
     private Utente utente;
     private int numeroOrdine;
 
-    public Ordine(LocalDate dataOrdine, double importTotale, Utente utente, int numeroOrdine){
+    public Ordine(LocalDate dataOrdine, Utente utente, int numeroOrdine){
         this.dataOrdine = dataOrdine;
-        this.importTotale = importTotale;
         this.utente = utente;
         this.numeroOrdine = numeroOrdine;
+        this.dettagliProdotti = new ArrayList<>();
     }
 
     public String toString(){
+        calcolaImportoTotale();
         String messaggio = null;
 
-        messaggio = "la data dell'ordine e': " + dataOrdine + "\n l'importo dell'ordine e': " + importTotale + "\n l'utente che ha fatto l'ordine e': " + utente + "\n il numero dell'ordine e': " + numeroOrdine;
+        messaggio = "La data dell'ordine e': " + dataOrdine + "\nL'importo dell'ordine e': " + importTotale + "\nL'utente che ha fatto l'ordine e': " + utente.toString() + "\nIl numero dell'ordine e': " + numeroOrdine + "\n";
 
         for (int i = 0; i < dettagliProdotti.size(); i++){
             messaggio += dettagliProdotti.toString() + "\n";
@@ -37,20 +38,24 @@ public class Ordine implements Serializable{
         return numeroOrdine;
     }
 
-    public char getStato(){
+    public String getStato(){
         return stato;
     }
 
-    public void setStato(char stato){
+    public void setStato(String stato){
         this.stato = stato;
     }
 
-    public void calcolaImportoTotale(){
+    private void calcolaImportoTotale(){
         double importo = 0;
         double costoQuantita = 0;
         for (int i = 0; i < dettagliProdotti.size(); i++){
-            costoQuantita += dettagliProdotti.get(i).getQuantita();
-            importo += dettagliProdotti.get(i).getCosto() * costoQuantita;
+            if (dettagliProdotti.get(i).getQuantita() > 1){
+                costoQuantita += dettagliProdotti.get(i).getQuantita();
+                importo += dettagliProdotti.get(i).getCosto() * costoQuantita;
+            }else{
+                importo += dettagliProdotti.get(i).getCosto();
+            }
         }
 
         importTotale = importo;
@@ -62,5 +67,9 @@ public class Ordine implements Serializable{
 
     public LocalDate getDataOrdine(){
         return dataOrdine;
+    }
+
+    public void setDettagliProdotti(DettagliOrdine dettagli){
+        dettagliProdotti.add(dettagli);
     }
 }

@@ -59,7 +59,7 @@ public class Azienda {
         }
     }
 
-    public void modificaStatoOrdine(char stato, int numeroOrdine){
+    public void modificaStatoOrdine(String stato, int numeroOrdine){
         for (int i = 0; i < ordini.size(); i++){
             if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
                 ordini.get(i).setStato(stato);
@@ -129,7 +129,7 @@ public class Azienda {
         }
     }
 
-    public void importaDati(String sceta){
+    public void importaDati(String scelta){
         ObjectInputStream utentiIn = null;
         ObjectInputStream prodottiIn = null;
         ObjectInputStream ordiniIn = null;
@@ -147,12 +147,14 @@ public class Azienda {
         }
 
         try {
-            if (!utenti.isEmpty()) {
-                System.out.println("Eliminazione degli utenti temporanei in corso...");
-            } else if (!prodotti.isEmpty()) {
-                System.out.println("Eliminazione dei prodotti temporanei in corso...");
-            } else if (!ordini.isEmpty()) {
-                System.out.println("Eliminazione degli ordini temporanei in corso...");
+            if (scelta.equals("y")) {
+                if (!utenti.isEmpty()) {
+                    System.out.println("Eliminazione degli utenti temporanei in corso...");
+                } else if (!prodotti.isEmpty()) {
+                    System.out.println("Eliminazione dei prodotti temporanei in corso...");
+                } else if (!ordini.isEmpty()) {
+                    System.out.println("Eliminazione degli ordini temporanei in corso...");
+                }
             }
 
             while (true) {
@@ -228,5 +230,37 @@ public class Azienda {
             System.err.println("Errore: " +  nullPtrEx.getMessage());
             System.err.println("Oggetto non caricato correttamente");
         }
+    }
+
+    public Utente getUtente(String email, String codiceFiscale, String numeroTelefono){
+        for (int i = 0; i < utenti.size(); i++){
+            if (utenti.get(i).getCodiceFiscale().equals(codiceFiscale)){ // Controllo con codice fiscale
+                return utenti.get(i);
+            } else if (utenti.get(i).getEmail().equals(email)) { // Controllo con email
+                return utenti.get(i);
+            }else if (utenti.get(i).getNumeroTel().equals(numeroTelefono)){ // Controllo con numero di telefono
+                return utenti.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Prodotto getProdotto(String codice){
+        for (int i = 0; i < prodotti.size(); i++){
+            if (prodotti.get(i).getCodice().equals(codice)){
+                return prodotti.get(i);
+            }
+        }
+
+        return null;
+    }
+
+    public int generaNumeroOrdine(){
+        int numero = -1;
+        for (int i = 0; i < ordini.size(); i++){
+            numero = ordini.get(i).getNumeroOrdine();
+        }
+
+        return numero + 1;
     }
 }
