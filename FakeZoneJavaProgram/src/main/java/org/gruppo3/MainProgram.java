@@ -39,12 +39,16 @@ public class MainProgram {
                     modificaStatoOrdine();
                     break;
                 case 8:
+                    aggiungiRecensione();
+                case 9:
+                    visualizzaRecensioni();
+                case 10:
                     visualizzaIncassoPeriodo();
                     break;
-                case 9:
+                case 11:
                     azienda.esportaDati();
                     break;
-                case 10:
+                case 12:
                     importa();
                     break;
                 case 0:
