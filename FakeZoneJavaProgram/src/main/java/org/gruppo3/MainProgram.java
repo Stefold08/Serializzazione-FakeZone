@@ -252,9 +252,8 @@ public class MainProgram {
     private static void aggiungiRecensione(){
         Scanner in = new Scanner(System.in);
         Utente user;
-        Prodotto product;
         Recenzione rec;
-        String descrizione;
+        String descrizione, codiceProdotto;
         int valutazione;
 
         user = ricercaUtente();
@@ -263,36 +262,32 @@ public class MainProgram {
             return;
         }
 
-        product = ricercaProdotto();
-        if (product == null){
-            System.out.println("Impossibile trovare il prodotto");
-        }else{
-            do{
-                System.out.print("Valutazione (0-5): ");
-                valutazione = in.nextInt();
-                if (!(valutazione > 1 && valutazione < 5)){
-                    System.out.println("Valutazione non valida");
-                }
-            }while (!(valutazione > 1 && valutazione < 5));
-            in.nextLine();
-            System.out.println("Descrizione: ");
-            descrizione = in.nextLine();
+        System.out.print("Codice prodotto: ");
+        codiceProdotto = in.nextLine();
+        do{
+            System.out.print("Valutazione (0-5): ");
+            valutazione = in.nextInt();
+            if (!(valutazione > 1 && valutazione < 5)){
+                System.out.println("Valutazione non valida");
+            }
+        }while (!(valutazione > 1 && valutazione < 5));
+        in.nextLine();
+        System.out.println("Descrizione: ");
+        descrizione = in.nextLine();
 
-            rec = new Recenzione(valutazione, LocalDate.now(), user, descrizione);
+        rec = new Recenzione(valutazione, LocalDate.now(), user, descrizione);
 
-            product.aggiungiRecensione(rec);
-        }
+        azienda.aggiungiRecensione(rec, codiceProdotto);
     }
 
     private static void visualizzaRecensioni(){
-        Prodotto prod;
+        Scanner in = new Scanner(System.in);
+        String codiceProdotto;
 
-        prod = ricercaProdotto();
-        if (prod == null){
-            System.out.println("Impossibile ottenere il prodotto");
-        }else{
-            prod.visualizzaRecensioni();
-        }
+        System.out.print("Codice prodotto: ");
+        codiceProdotto = in.nextLine();
+
+        azienda.visuaizzaRecensioniProdotto(codiceProdotto);
     }
 
     private static void visualizzaIncassoPeriodo(){
