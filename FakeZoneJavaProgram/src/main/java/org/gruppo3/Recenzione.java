@@ -19,20 +19,4 @@ public class Recenzione {
     public String toString(){
         return utente.toString() + "\nData recensione: " + dataRecenzione + "\nValutazione: " + stelle + "\nCommento:\n" + descrizione;
     }
-
-    public int getStelle(){
-        return stelle;
-    }
-
-    public LocalDate getDataRecenzione(){
-        return dataRecenzione;
-    }
-
-    public String getDescrizione(){
-        return descrizione;
-    }
-
-    public Utente getUtente(){
-        return utente;
-    }
 }
