@@ -11,7 +11,7 @@ public class MainProgram {
     private static Azienda azienda = new Azienda();
 
     public static void main(String[] args){
-        int scelta = 0;
+        int scelta;
 
         do{
             scelta = menu();
@@ -39,12 +39,18 @@ public class MainProgram {
                     modificaStatoOrdine();
                     break;
                 case 8:
-                    visualizzaIncassoPeriodo();
+                    aggiungiRecensione();
                     break;
                 case 9:
-                    azienda.esportaDati();
+                    visualizzaRecensioni();
                     break;
                 case 10:
+                    visualizzaIncassoPeriodo();
+                    break;
+                case 11:
+                    azienda.esportaDati();
+                    break;
+                case 12:
                     importa();
                     break;
                 case 0:
@@ -58,7 +64,7 @@ public class MainProgram {
     }
 
     private static int menu(){
-        int scelta = 0;
+        int scelta;
         Scanner in = new Scanner(System.in);
 
         try{
@@ -70,9 +76,11 @@ public class MainProgram {
             System.out.println("5) Ordina un prodotto");
             System.out.println("6) Visualizza informazioni sull'ordine");
             System.out.println("7) Modifica lo stato di un ordine");
-            System.out.println("8) Visualizza l'incasso di un periodo");
-            System.out.println("9) Esporta tutti i dati");
-            System.out.println("10) Importa dati");
+            System.out.println("8) Aggiungi una recensione");
+            System.out.println("9) Visualizza le recensioni di un prodotto");
+            System.out.println("10) Visualizza l'incasso di un periodo");
+            System.out.println("11) Esporta tutti i dati");
+            System.out.println("12) Importa dati");
             System.out.println("0) Esci");
             System.out.print("Scelta: ");
             scelta = in.nextInt();
@@ -129,7 +137,7 @@ public class MainProgram {
 
     private static void aggiungiProdotto(){
         Scanner in = new Scanner(System.in);
-        String codice, nomeProdotto, descrizione, scelta = null;
+        String codice, nomeProdotto, descrizione, scelta;
         double costo;
         Prodotto prodotto;
 
@@ -177,7 +185,7 @@ public class MainProgram {
         String scelta = null;
 
         user = ricercaUtente();
-        if (user.equals(null)){
+        if (user == null){
             System.out.println("Impossibile ottenere l'utente!");
             return;
         }
@@ -197,7 +205,7 @@ public class MainProgram {
 
         do{
             product = ricercaProdotto();
-            if (!product.equals(null)){
+            if (product != null){
                 costoProdotto = product.getCosto();
 
                 System.out.print("Quantità: ");
@@ -239,6 +247,47 @@ public class MainProgram {
         numeroOrdine = in.nextInt();
 
         azienda.visualizzaDatiOrdine(numeroOrdine);
+    }
+
+    private static void aggiungiRecensione(){
+        Scanner in = new Scanner(System.in);
+        Utente user;
+        Recenzione rec;
+        String descrizione, codiceProdotto;
+        int valutazione;
+
+        user = ricercaUtente();
+        if (user == null){
+            System.out.println("Impossibile ottenere l'utente");
+            return;
+        }
+
+        System.out.print("Codice prodotto: ");
+        codiceProdotto = in.nextLine();
+        do{
+            System.out.print("Valutazione (0-5): ");
+            valutazione = in.nextInt();
+            if (!(valutazione > 1 && valutazione < 5)){
+                System.out.println("Valutazione non valida");
+            }
+        }while (!(valutazione > 1 && valutazione < 5));
+        in.nextLine();
+        System.out.println("Descrizione: ");
+        descrizione = in.nextLine();
+
+        rec = new Recenzione(valutazione, LocalDate.now(), user, descrizione);
+
+        azienda.aggiungiRecensione(rec, codiceProdotto);
+    }
+
+    private static void visualizzaRecensioni(){
+        Scanner in = new Scanner(System.in);
+        String codiceProdotto;
+
+        System.out.print("Codice prodotto: ");
+        codiceProdotto = in.nextLine();
+
+        azienda.visuaizzaRecensioniProdotto(codiceProdotto);
     }
 
     private static void visualizzaIncassoPeriodo(){
