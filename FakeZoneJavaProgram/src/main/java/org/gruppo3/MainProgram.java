@@ -265,8 +265,13 @@ public class MainProgram {
         if (product == null){
             System.out.println("Impossibile trovare il prodotto");
         }else{
-            System.out.print("Valutazione (0-5): ");
-            valutazione = in.nextInt();
+            do{
+                System.out.print("Valutazione (0-5): ");
+                valutazione = in.nextInt();
+                if (!(valutazione > 1 && valutazione < 5)){
+                    System.out.println("Valutazione non valida");
+                }
+            }while (valutazione > 1 && valutazione < 5);
             in.nextLine();
             System.out.println("Descrizione: ");
             descrizione = in.nextLine();
