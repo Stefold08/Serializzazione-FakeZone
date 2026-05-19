@@ -40,8 +40,10 @@ public class MainProgram {
                     break;
                 case 8:
                     aggiungiRecensione();
+                    break;
                 case 9:
                     visualizzaRecensioni();
+                    break;
                 case 10:
                     visualizzaIncassoPeriodo();
                     break;
@@ -271,7 +273,7 @@ public class MainProgram {
                 if (!(valutazione > 1 && valutazione < 5)){
                     System.out.println("Valutazione non valida");
                 }
-            }while (valutazione > 1 && valutazione < 5);
+            }while (!(valutazione > 1 && valutazione < 5));
             in.nextLine();
             System.out.println("Descrizione: ");
             descrizione = in.nextLine();
