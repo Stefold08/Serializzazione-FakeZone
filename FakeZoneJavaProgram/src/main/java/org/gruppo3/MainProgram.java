@@ -11,7 +11,7 @@ public class MainProgram {
     private static Azienda azienda = new Azienda();
 
     public static void main(String[] args){
-        int scelta = 0;
+        int scelta;
 
         do{
             scelta = menu();
@@ -64,7 +64,7 @@ public class MainProgram {
     }
 
     private static int menu(){
-        int scelta = 0;
+        int scelta;
         Scanner in = new Scanner(System.in);
 
         try{
@@ -137,7 +137,7 @@ public class MainProgram {
 
     private static void aggiungiProdotto(){
         Scanner in = new Scanner(System.in);
-        String codice, nomeProdotto, descrizione, scelta = null;
+        String codice, nomeProdotto, descrizione, scelta;
         double costo;
         Prodotto prodotto;
 
