@@ -70,9 +70,11 @@ public class MainProgram {
             System.out.println("5) Ordina un prodotto");
             System.out.println("6) Visualizza informazioni sull'ordine");
             System.out.println("7) Modifica lo stato di un ordine");
-            System.out.println("8) Visualizza l'incasso di un periodo");
-            System.out.println("9) Esporta tutti i dati");
-            System.out.println("10) Importa dati");
+            System.out.println("8) Aggiungi una recensione");
+            System.out.println("9) Visualizza le recensioni di un prodotto");
+            System.out.println("10) Visualizza l'incasso di un periodo");
+            System.out.println("11) Esporta tutti i dati");
+            System.out.println("12) Importa dati");
             System.out.println("0) Esci");
             System.out.print("Scelta: ");
             scelta = in.nextInt();
