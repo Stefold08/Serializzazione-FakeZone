@@ -241,6 +241,8 @@ public class Azienda {
                 return ordini.get(i);
             }
         }
+
+        return null;
     }
 
     public int generaNumeroOrdine(){
