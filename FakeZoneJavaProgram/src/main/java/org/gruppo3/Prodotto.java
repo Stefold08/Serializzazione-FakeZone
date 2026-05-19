@@ -10,6 +10,7 @@ public class Prodotto implements Serializable{
     private String descrizione;
     private double costo;
     private ArrayList<String> pathImmagini;
+    private ArrayList<Recenzione> recensioni;
 
     public Prodotto(String codice, String descirzione, String nomeProdotto, double costo){
         this.codice = codice;
@@ -17,6 +18,7 @@ public class Prodotto implements Serializable{
         this.costo = costo;
         this.nomeProdotto = nomeProdotto;
         pathImmagini = new ArrayList<>();
+        recensioni = new ArrayList<>();
     }
 
     @Override
@@ -45,5 +47,15 @@ public class Prodotto implements Serializable{
 
     public String getDettagliProdottoOrdine(){
         return "Codice prodotto: " + codice + "\nNome: " + nomeProdotto + "\nDescrizione:\n" + descrizione + "\n";
+    }
+
+    public void aggiungiRecensione(Recenzione rec){
+        recensioni.add(rec);
+    }
+
+    public void visualizzaRecensioni(){
+        for (int i = 0; i < recensioni.size(); i++){
+            System.out.println(recensioni.get(i).toString());
+        }
     }
 }
