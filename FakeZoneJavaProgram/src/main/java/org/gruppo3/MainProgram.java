@@ -277,6 +277,17 @@ public class MainProgram {
         }
     }
 
+    private static void visualizzaRecensioni(){
+        Prodotto prod;
+
+        prod = ricercaProdotto();
+        if (prod == null){
+            System.out.println("Impossibile ottenere il prodotto");
+        }else{
+            prod.visualizzaRecensioni();
+        }
+    }
+
     private static void visualizzaIncassoPeriodo(){
         Scanner in = new Scanner(System.in);
         LocalDate dataInizio, dataFine;
