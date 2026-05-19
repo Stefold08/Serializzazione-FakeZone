@@ -17,7 +17,7 @@ public class Recenzione {
 
     @Override
     public String toString(){
-        return "Utente: " + utente.toString() + "\nData recensione: " + dataRecenzione + "\nValutazione: " + stelle + "\nCommento:\n" + descrizione;
+        return utente.toString() + "\nData recensione: " + dataRecenzione + "\nValutazione: " + stelle + "\nCommento:\n" + descrizione;
     }
 
     public int getStelle(){
