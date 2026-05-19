@@ -39,15 +39,12 @@ public class Azienda {
     }
 
     public void visualizzaDatiOrdine(int numeroOrdine){
-        System.out.println(get);
+        System.out.println(getOrdine(numeroOrdine).toString());
     }
 
     public void modificaStatoOrdine(String stato, int numeroOrdine){
-        for (int i = 0; i < ordini.size(); i++){
-            if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
-                ordini.get(i).setStato(stato);
-            }
-        }
+        getOrdine(numeroOrdine).setStato(stato);
+        System.out.println("Stato attuale: " + stato);
     }
 
     public void visulizzaIncasssoPeriodo(LocalDate inizio, LocalDate fine){
