@@ -185,7 +185,7 @@ public class MainProgram {
         String scelta = null;
 
         user = ricercaUtente();
-        if (user.equals(null)){
+        if (user == null){
             System.out.println("Impossibile ottenere l'utente!");
             return;
         }
