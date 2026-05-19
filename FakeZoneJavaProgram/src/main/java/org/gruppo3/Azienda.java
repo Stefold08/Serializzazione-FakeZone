@@ -253,4 +253,12 @@ public class Azienda {
 
         return numero + 1;
     }
+
+    public void aggiungiRecensione(Recenzione recenzione, String codiceProdotto){
+        getProdotto(codiceProdotto).aggiungiRecensione(recenzione);
+    }
+
+    public void visuaizzaRecensioniProdotto(String codiceProdotto){
+        getProdotto(codiceProdotto).visualizzaRecensioni();
+    }
 }
