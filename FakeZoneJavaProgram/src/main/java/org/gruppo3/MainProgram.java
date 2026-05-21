@@ -68,20 +68,21 @@ public class MainProgram {
         Scanner in = new Scanner(System.in);
 
         try{
-            System.out.println("Menu");
-            System.out.println("1) Inserisci dati utente");
-            System.out.println("2) Visualizza dati utente");
-            System.out.println("3) Inserisci nuovo prodotto");
-            System.out.println("4) Visualizza dati prodotto");
-            System.out.println("5) Ordina un prodotto");
-            System.out.println("6) Visualizza informazioni sull'ordine");
-            System.out.println("7) Modifica lo stato di un ordine");
-            System.out.println("8) Aggiungi una recensione");
-            System.out.println("9) Visualizza le recensioni di un prodotto");
-            System.out.println("10) Visualizza l'incasso di un periodo");
-            System.out.println("11) Esporta tutti i dati");
-            System.out.println("12) Importa dati");
-            System.out.println("0) Esci");
+            System.out.println("=================== Menu ====================");
+            System.out.println("1) Inserisci dati utente                    ||");
+            System.out.println("2) Visualizza dati utente                   ||");
+            System.out.println("3) Inserisci nuovo prodotto                 ||");
+            System.out.println("4) Visualizza dati prodotto                 ||");
+            System.out.println("5) Ordina un prodotto                       ||");
+            System.out.println("6) Visualizza informazioni sull'ordine      ||");
+            System.out.println("7) Modifica lo stato di un ordine           ||");
+            System.out.println("8) Aggiungi una recensione                  ||");
+            System.out.println("9) Visualizza le recensioni di un prodotto  ||");
+            System.out.println("10) Visualizza l'incasso di un periodo      ||");
+            System.out.println("11) Esporta tutti i dati                    ||");
+            System.out.println("12) Importa dati                            ||");
+            System.out.println("0) Esci                                     ||");
+            System.out.println("=============================================");
             System.out.print("Scelta: ");
             scelta = in.nextInt();
 
@@ -102,7 +103,7 @@ public class MainProgram {
         nome = in.nextLine();
         System.out.print("Cognome: ");
         cognome = in.nextLine();
-        System.out.print("Sesso: ");
+        System.out.print("Sesso(M - F): ");
         sesso = in.nextLine();
         System.out.print("Data di nascita (AAAA-MM-GG): ");
         dataNascita = LocalDate.parse(in.nextLine());
