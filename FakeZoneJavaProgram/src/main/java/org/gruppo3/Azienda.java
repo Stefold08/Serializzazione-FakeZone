@@ -34,8 +34,14 @@ public class Azienda {
     }
 
     public void visualizzaDatiProdotto(String codice){
-        System.out.println(getProdotto(codice).toString());
-        getProdotto(codice).visualizzaRecensioni();
+        Prodotto prodotto = getProdotto(codice);
+
+        if (prodotto == null){
+            System.out.println("Prodotto non trvato");
+        }else {
+            System.out.println(prodotto.toString());
+            prodotto.visualizzaRecensioni();
+        }
     }
 
     public void visualizzaDatiOrdine(int numeroOrdine){
@@ -261,10 +267,22 @@ public class Azienda {
     }
 
     public void aggiungiRecensione(Recenzione recenzione, String codiceProdotto){
-        getProdotto(codiceProdotto).aggiungiRecensione(recenzione);
+        Prodotto prodotto = getProdotto(codiceProdotto);
+
+        if (prodotto == null){
+            System.out.println("Impossibile trovare il prodotto");
+        }else {
+            prodotto.aggiungiRecensione(recenzione);
+        }
     }
 
     public void visuaizzaRecensioniProdotto(String codiceProdotto){
-        getProdotto(codiceProdotto).visualizzaRecensioni();
+        Prodotto prodotto = getProdotto(codiceProdotto);
+
+        if (prodotto == null){
+            System.out.println("Impossibile trovare il prodotto");
+        }else {
+            prodotto.visualizzaRecensioni();
+        }
     }
 }
