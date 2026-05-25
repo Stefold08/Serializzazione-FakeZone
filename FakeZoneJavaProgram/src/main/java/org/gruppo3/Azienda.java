@@ -79,32 +79,26 @@ public class Azienda {
 
     public void esportaDati() {
 
-        try (
-            ObjectOutputStream utentiOut = new ObjectOutputStream(new FileOutputStream("datiUtenti.dat"));
+        try{
+            ObjectOutputStream outputUtenti = new ObjectOutputStream(new FileOutputStream("datiUtenti.dat"));
+            ObjectOutputStream outputProdotti = new ObjectOutputStream(new FileOutputStream("datiProdotti.dat"));
+            ObjectOutputStream outputOrdini = new ObjectOutputStream(new FileOutputStream("datiOrdini.dat"));
 
-            ObjectOutputStream prodottoOut = new ObjectOutputStream(new FileOutputStream("datiProdotti.dat"));
+            outputUtenti.writeObject(utenti);
+            outputProdotti.writeObject(prodotti);
+            outputOrdini.writeObject(ordini);
 
-            ObjectOutputStream ordiniOut = new ObjectOutputStream(new FileOutputStream("datiOrdini.dat"))
-        ){
-            // Salvataggio utenti
-            for (Utente u : utenti) {
-                utentiOut.writeObject(u);
-            }
+            outputUtenti.close();
+            outputProdotti.close();
+            outputOrdini.close();
 
-            // Salvataggio prodotti
-            for (Prodotto p : prodotti) {
-                prodottoOut.writeObject(p);
-            }
-
-            // Salvataggio ordini
-            for (Ordine o : ordini) {
-                ordiniOut.writeObject(o);
-            }
-
-            System.out.println("Salvataggio completato!");
-
-        } catch (IOException ioEx) {
+            System.out.println("Salvataggio completato");
+        }catch (FileNotFoundException fileNotFoundEx){
+            System.err.println("Errore: " + fileNotFoundEx.getMessage());
+            System.err.println("Impossibile trovare i files");
+        }catch (IOException ioEx){
             System.err.println("Errore: " + ioEx.getMessage());
+            System.err.println("Errore di Input/Output");
         }
     }
 
