@@ -77,53 +77,34 @@ public class Azienda {
         System.out.println("Importo totale del periodo " + inizio.toString() + "/" + fine.toString() + ": " + incassiPeriodo);
     }
 
-    public void esportaDati(){
-        ObjectOutputStream utentiOut = null;
-        ObjectOutputStream prodottoOut = null;
-        ObjectOutputStream ordiniOut = null;
+    public void esportaDati() {
 
-        try{
-            utentiOut = new ObjectOutputStream(new FileOutputStream("datiUtenti.dat"));
-            prodottoOut = new ObjectOutputStream(new FileOutputStream("datiProdotti.dat"));
-            ordiniOut = new ObjectOutputStream(new FileOutputStream("datiOrdini.dat"));
-        } catch (FileNotFoundException fileEx){
-            System.err.println("Errore: " + fileEx.getMessage());
-            System.err.println("Files non trovati");
-        } catch (IOException ioEx){
-            System.err.println("Errore: " + ioEx.getMessage());
-            System.err.println("Errore di Input/Output");
-        }
+        try (
+            ObjectOutputStream utentiOut = new ObjectOutputStream(new FileOutputStream("datiUtenti.dat"));
 
-        try{
-            // Salvataggio degli utenti
-            for (int i = 0; i < utenti.size(); i++){
-                utentiOut.writeObject(utenti.get(i));
+            ObjectOutputStream prodottoOut = new ObjectOutputStream(new FileOutputStream("datiProdotti.dat"));
+
+            ObjectOutputStream ordiniOut = new ObjectOutputStream(new FileOutputStream("datiOrdini.dat"))
+        ){
+            // Salvataggio utenti
+            for (Utente u : utenti) {
+                utentiOut.writeObject(u);
             }
 
             // Salvataggio prodotti
-            for (int i = 0; i < prodotti.size(); i++){
-                prodottoOut.writeObject(prodotti.get(i));
+            for (Prodotto p : prodotti) {
+                prodottoOut.writeObject(p);
             }
 
             // Salvataggio ordini
-            for (int i = 0; i < ordini.size(); i++){
-                ordiniOut.writeObject(ordini.get(i));
+            for (Ordine o : ordini) {
+                ordiniOut.writeObject(o);
             }
 
-            // Chiusura dei file
-            utentiOut.close();
-            prodottoOut.close();
-            ordiniOut.close();
-
             System.out.println("Salvataggio completato!");
-            System.out.println("Tipo di salvataggio: serializzazione");
-            System.out.println("Nomi dei file: datiUtenti.dat, datiProdotti.dat, datiOrdini.dat");
-        } catch (IOException ioEx){
+
+        } catch (IOException ioEx) {
             System.err.println("Errore: " + ioEx.getMessage());
-            System.err.println("Errore di Input/Output");
-        } catch (NullPointerException nullPtrEx){
-            System.err.println("Errore: " + nullPtrEx.getMessage());
-            System.err.println("Oggetto non caricato correttamente");
         }
     }
 
