@@ -273,10 +273,15 @@ public class MainProgram {
         Scanner in = new Scanner(System.in);
         int numeroOrdine;
 
-        System.out.print("Numero ordine: ");
-        numeroOrdine = in.nextInt();
+        try {
+            System.out.print("Numero ordine: ");
+            numeroOrdine = in.nextInt();
 
-        azienda.visualizzaDatiOrdine(numeroOrdine);
+            azienda.visualizzaDatiOrdine(numeroOrdine);
+        }catch (InputMismatchException inputMismatchEx){
+            System.err.println("Errore: " + inputMismatchEx.getMessage());
+            System.err.println("Input non valido, operazione annullata");
+        }
     }
 
     private static void aggiungiRecensione(){
