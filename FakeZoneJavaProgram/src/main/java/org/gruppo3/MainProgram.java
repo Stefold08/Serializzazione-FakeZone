@@ -255,13 +255,18 @@ public class MainProgram {
         String stato;
         int numeroOrdine;
 
-        System.out.print("Numero ordine: ");
-        numeroOrdine = in.nextInt();
-        in.nextLine();
-        System.out.print("Nuovo stato ordine: ");
-        stato = in.nextLine();
+        try {
+            System.out.print("Numero ordine: ");
+            numeroOrdine = in.nextInt();
+            in.nextLine();
+            System.out.print("Nuovo stato ordine: ");
+            stato = in.nextLine();
 
-        azienda.modificaStatoOrdine(stato, numeroOrdine);
+            azienda.modificaStatoOrdine(stato, numeroOrdine);
+        }catch (InputMismatchException inputMismatchEx){
+            System.err.println("Errore: " + inputMismatchEx.getMessage());
+            System.err.println("Input non valido, operazione annulata");
+        }
     }
 
     private static void informazioniOrdine(){
