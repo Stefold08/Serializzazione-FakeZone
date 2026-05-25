@@ -10,13 +10,13 @@ public class MainProgram {
 
     private static Azienda azienda = new Azienda();
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int scelta;
 
-        do{
+        do {
             scelta = menu();
 
-            switch (scelta){
+            switch (scelta) {
                 case 1:
                     aggiungiUtente();
                     break;
@@ -60,14 +60,14 @@ public class MainProgram {
                     System.out.println("Scelta non valida!");
                     break;
             }
-        }while (scelta != 0);
+        } while (scelta != 0);
     }
 
-    private static int menu(){
+    private static int menu() {
         int scelta;
         Scanner in = new Scanner(System.in);
 
-        try{
+        try {
             System.out.println("=================== Menu ====================");
             System.out.println("1) Inserisci dati utente                    ||");
             System.out.println("2) Visualizza dati utente                   ||");
@@ -87,14 +87,14 @@ public class MainProgram {
             scelta = in.nextInt();
 
             return scelta;
-        }catch (InputMismatchException inEx){
+        } catch (InputMismatchException inEx) {
             System.err.println("Errore: " + inEx.getMessage());
             System.err.println("Input non valido");
             return -1;
         }
     }
 
-    private static void aggiungiUtente(){
+    private static void aggiungiUtente() {
         Scanner in = new Scanner(System.in);
         String nome, cognome, sesso, password, codiceFiscale, email, indirizzo, numeroTelefono;
         LocalDate dataNascita;
@@ -121,16 +121,16 @@ public class MainProgram {
 
             azienda.addUtente(new Utente(password, nome, cognome, dataNascita, sesso, codiceFiscale, email, indirizzo, numeroTelefono));
 
-        } catch (DateTimeParseException dateTimeEx){
+        } catch (DateTimeParseException dateTimeEx) {
             System.err.println("Errore: " + dateTimeEx.getMessage());
             System.err.println("Formato data errato, utente non creato");
-        }catch (InputMismatchException inputMismatchEx){
+        } catch (InputMismatchException inputMismatchEx) {
             System.err.println("Errore: " + inputMismatchEx.getMessage());
             System.err.println("Input non valido");
         }
     }
 
-    private static void visualizzaDatiUtente(){
+    private static void visualizzaDatiUtente() {
         Scanner in = new Scanner(System.in);
         String email, codiceFiscale, numeroTelefono;
 
@@ -145,13 +145,13 @@ public class MainProgram {
 
             azienda.visualizzaDatiUtente(codiceFiscale, email, numeroTelefono);
 
-        }catch (InputMismatchException inputMismatchEx){
+        } catch (InputMismatchException inputMismatchEx) {
             System.err.println("Errore: " + inputMismatchEx.getMessage());
             System.err.println("Input non valido, operazione annullata");
         }
     }
 
-    private static void aggiungiProdotto(){
+    private static void aggiungiProdotto() {
         Scanner in = new Scanner(System.in);
         String codice, nomeProdotto, descrizione, scelta;
         double costo;
@@ -178,13 +178,13 @@ public class MainProgram {
             } while (scelta.equals("y"));
 
             azienda.addProdotto(prodotto);
-        }catch (InputMismatchException inputMismatchEx){
+        } catch (InputMismatchException inputMismatchEx) {
             System.err.println("Errore: " + inputMismatchEx.getMessage());
             System.err.println("Input non valido");
         }
     }
 
-    private static void informazioniProdotto(){
+    private static void informazioniProdotto() {
         Scanner in = new Scanner(System.in);
         String codice;
 
@@ -194,7 +194,7 @@ public class MainProgram {
         azienda.visualizzaDatiProdotto(codice);
     }
 
-    private static void insericiOrdine(){
+    private static void insericiOrdine() {
         Scanner in = new Scanner(System.in);
         Utente user;
         Prodotto product;
@@ -206,18 +206,18 @@ public class MainProgram {
         String scelta = null;
 
         user = ricercaUtente();
-        if (user == null){
+        if (user == null) {
             System.out.println("Impossibile ottenere l'utente!");
             return;
         }
 
-        try{
+        try {
             System.out.print("Data ordine (AAAA-MM-GG): ");
             dataOrdine = LocalDate.parse(in.nextLine());
             numeroOrdine = azienda.generaNumeroOrdine();
 
             ordine = new Ordine(dataOrdine, user, numeroOrdine);
-        }catch (DateTimeParseException dateTimeParseEx){
+        } catch (DateTimeParseException dateTimeParseEx) {
             System.err.println("Errore: " + dateTimeParseEx.getMessage());
             System.err.println("Formato data valido: ANNO-Mese-Giorno");
             return;
@@ -239,7 +239,7 @@ public class MainProgram {
                     scelta = in.nextLine();
                 }
             } while (scelta.equals("y"));
-        }catch (InputMismatchException inputMismatchEx){
+        } catch (InputMismatchException inputMismatchEx) {
             System.err.println("Errore: " + inputMismatchEx.getMessage());
             System.err.println("Input non valido, operazione annullata");
         }
@@ -250,7 +250,7 @@ public class MainProgram {
         System.out.println("Lo stato dell'ordine è: " + ordine.getStato());
     }
 
-    private static void modificaStatoOrdine(){
+    private static void modificaStatoOrdine() {
         Scanner in = new Scanner(System.in);
         String stato;
         int numeroOrdine;
@@ -263,13 +263,13 @@ public class MainProgram {
             stato = in.nextLine();
 
             azienda.modificaStatoOrdine(stato, numeroOrdine);
-        }catch (InputMismatchException inputMismatchEx){
+        } catch (InputMismatchException inputMismatchEx) {
             System.err.println("Errore: " + inputMismatchEx.getMessage());
             System.err.println("Input non valido, operazione annulata");
         }
     }
 
-    private static void informazioniOrdine(){
+    private static void informazioniOrdine() {
         Scanner in = new Scanner(System.in);
         int numeroOrdine;
 
@@ -278,13 +278,13 @@ public class MainProgram {
             numeroOrdine = in.nextInt();
 
             azienda.visualizzaDatiOrdine(numeroOrdine);
-        }catch (InputMismatchException inputMismatchEx){
+        } catch (InputMismatchException inputMismatchEx) {
             System.err.println("Errore: " + inputMismatchEx.getMessage());
             System.err.println("Input non valido, operazione annullata");
         }
     }
 
-    private static void aggiungiRecensione(){
+    private static void aggiungiRecensione() {
         Scanner in = new Scanner(System.in);
         Utente user;
         Recenzione rec;
@@ -292,7 +292,7 @@ public class MainProgram {
         int valutazione;
 
         user = ricercaUtente();
-        if (user == null){
+        if (user == null) {
             System.out.println("Impossibile ottenere l'utente");
             return;
         }
@@ -307,7 +307,7 @@ public class MainProgram {
                     System.out.println("Valutazione non valida");
                 }
             } while (!(valutazione > 1 && valutazione < 5));
-        }catch (InputMismatchException inputMismatchEx){
+        } catch (InputMismatchException inputMismatchEx) {
             System.err.println("Errore: " + inputMismatchEx.getMessage());
             System.err.println("Input non valido, operazione annullara");
             return;
@@ -321,7 +321,7 @@ public class MainProgram {
         azienda.aggiungiRecensione(rec, codiceProdotto);
     }
 
-    private static void visualizzaRecensioni(){
+    private static void visualizzaRecensioni() {
         Scanner in = new Scanner(System.in);
         String codiceProdotto;
 
@@ -331,7 +331,7 @@ public class MainProgram {
         azienda.visuaizzaRecensioniProdotto(codiceProdotto);
     }
 
-    private static void visualizzaIncassoPeriodo(){
+    private static void visualizzaIncassoPeriodo() {
         Scanner in = new Scanner(System.in);
         LocalDate dataInizio, dataFine;
 
@@ -340,7 +340,7 @@ public class MainProgram {
             dataInizio = LocalDate.parse(in.nextLine());
             System.out.print("Data fine (AAAA-MM-GG): ");
             dataFine = LocalDate.parse(in.nextLine());
-        }catch (DateTimeParseException dateTimeParseEx){
+        } catch (DateTimeParseException dateTimeParseEx) {
             System.err.println("Errore: " + dateTimeParseEx.getMessage());
             System.err.println("Formato data non valido");
             return;
@@ -348,7 +348,7 @@ public class MainProgram {
         azienda.visulizzaIncasssoPeriodo(dataInizio, dataFine);
     }
 
-    private static void importa(){
+    private static void importa() {
         Scanner in = new Scanner(System.in);
         String scelta;
 
@@ -358,7 +358,7 @@ public class MainProgram {
         azienda.importaDati(scelta);
     }
 
-    private static Utente ricercaUtente(){
+    private static Utente ricercaUtente() {
         Scanner in = new Scanner(System.in);
         String email, codiceFiscale, numeroTelefono;
 
@@ -373,7 +373,7 @@ public class MainProgram {
         return azienda.getUtente(email, codiceFiscale, numeroTelefono);
     }
 
-    private static Prodotto ricercaProdotto(){
+    private static Prodotto ricercaProdotto() {
         Scanner in = new Scanner(System.in);
         String codice;
 
