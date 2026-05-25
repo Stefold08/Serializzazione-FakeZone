@@ -30,7 +30,13 @@ public class Azienda {
     }
 
     public void visualizzaDatiUtente(String codiceFiscale, String email, String numeroTelefono){
-        System.out.println(getUtente(email, codiceFiscale, numeroTelefono).toString());
+        Utente utente = getUtente(email, codiceFiscale, numeroTelefono);
+
+        if (utente == null){
+            System.out.println("Impossibile trovare l'utente");
+        }else {
+            System.out.println(utente.toString());
+        }
     }
 
     public void visualizzaDatiProdotto(String codice){
