@@ -335,11 +335,16 @@ public class MainProgram {
         Scanner in = new Scanner(System.in);
         LocalDate dataInizio, dataFine;
 
-        System.out.print("Data inizio (MM/GG/AAAA): ");
-        dataInizio = LocalDate.parse(in.nextLine());
-        System.out.print("Data fine (MM/GG/AAAA): ");
-        dataFine = LocalDate.parse(in.nextLine());
-
+        try {
+            System.out.print("Data inizio (MM/GG/AAAA): ");
+            dataInizio = LocalDate.parse(in.nextLine());
+            System.out.print("Data fine (MM/GG/AAAA): ");
+            dataFine = LocalDate.parse(in.nextLine());
+        }catch (DateTimeParseException dateTimeParseEx){
+            System.err.println("Errore: " + dateTimeParseEx.getMessage());
+            System.err.println("Formato data non valido");
+            return;
+        }
         azienda.visulizzaIncasssoPeriodo(dataInizio, dataFine);
     }
 
