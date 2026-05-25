@@ -2,19 +2,21 @@ package org.gruppo3;
 
 import java.time.LocalDate;
 
-// DA IMPLEMENTARE + AVANTI!!!
 public class Recenzione {
     private int stelle;
     private LocalDate dataRecenzione;
     private Utente utente;
-    private String descrizzione;
+    private String descrizione;
 
-    public Recenzione(int stelle, LocalDate dataRecenzione, Utente utente, String descrizzione){
+    public Recenzione(int stelle, LocalDate dataRecenzione, Utente utente, String descrizione){
         this.stelle = stelle;
         this.dataRecenzione = dataRecenzione;
         this.utente = utente;
-        this.descrizzione = descrizzione;
+        this.descrizione = descrizione;
     }
 
-
+    @Override
+    public String toString(){
+        return utente.toString() + "\nData recensione: " + dataRecenzione + "\nValutazione: " + stelle + "\nCommento:\n" + descrizione;
+    }
 }

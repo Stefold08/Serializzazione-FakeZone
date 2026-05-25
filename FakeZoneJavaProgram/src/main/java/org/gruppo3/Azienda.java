@@ -30,41 +30,39 @@ public class Azienda {
     }
 
     public void visualizzaDatiUtente(String codiceFiscale, String email, String numeroTelefono){
-        for (int i = 0; i < utenti.size(); i++){
-            if (utenti.get(i).getCodiceFiscale().equals(codiceFiscale)){ // Controllo con codice fiscale
-                System.out.println(utenti.get(i).toString());
-            } else if (utenti.get(i).getEmail().equals(email)) { // Controllo con email
-                System.out.println(utenti.get(i).toString());
-            }else if (utenti.get(i).getNumeroTel().equals(numeroTelefono)){ // Controllo con numero di telefono
-                System.out.println(utenti.get(i).toString());
-            }else{
-                System.out.println("Utente non trovato / inesistente!");
-            }
+        Utente utente = getUtente(email, codiceFiscale, numeroTelefono);
+
+        if (utente == null){
+            System.out.println("Impossibile trovare l'utente");
+        }else {
+            System.out.println(utente.toString());
         }
     }
 
     public void visualizzaDatiProdotto(String codice){
-        for (int i = 0; i < prodotti.size(); i++){
-            if (prodotti.get(i).getCodice().equals(codice)){
-                System.out.println(prodotti.get(i).toString());
-            }
+        Prodotto prodotto = getProdotto(codice);
+
+        if (prodotto == null){
+            System.out.println("Prodotto non trvato");
+        }else {
+            System.out.println(prodotto.toString());
+            prodotto.visualizzaRecensioni();
         }
     }
 
     public void visualizzaDatiOrdine(int numeroOrdine){
-        for (int i = 0; i < ordini.size(); i++){
-            if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
-                System.out.println(ordini.get(i).toString());
-            }
-        }
+        System.out.println(getOrdine(numeroOrdine).toString());
     }
 
     public void modificaStatoOrdine(String stato, int numeroOrdine){
-        for (int i = 0; i < ordini.size(); i++){
-            if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
-                ordini.get(i).setStato(stato);
-            }
+        Ordine ordine = getOrdine(numeroOrdine);
+
+        if (ordine == null){
+            System.out.println("Ordine non trovato");
+        }else{
+            ordine.setStato(stato);
         }
+        System.out.println("Stato attuale: " + stato);
     }
 
     public void visulizzaIncasssoPeriodo(LocalDate inizio, LocalDate fine){
@@ -79,156 +77,58 @@ public class Azienda {
         System.out.println("Importo totale del periodo " + inizio.toString() + "/" + fine.toString() + ": " + incassiPeriodo);
     }
 
-    public void esportaDati(){
-        ObjectOutputStream utentiOut = null;
-        ObjectOutputStream prodottoOut = null;
-        ObjectOutputStream ordiniOut = null;
+    public void esportaDati() {
 
         try{
-            utentiOut = new ObjectOutputStream(new FileOutputStream("datiUtenti.dat"));
-            prodottoOut = new ObjectOutputStream(new FileOutputStream("datiProdotti.dat"));
-            ordiniOut = new ObjectOutputStream(new FileOutputStream("datiOrdini.dat"));
-        } catch (FileNotFoundException fileEx){
-            System.err.println("Errore: " + fileEx.getMessage());
-            System.err.println("Files non trovati");
-        } catch (IOException ioEx){
+            ObjectOutputStream outputUtenti = new ObjectOutputStream(new FileOutputStream("datiUtenti.dat"));
+            ObjectOutputStream outputProdotti = new ObjectOutputStream(new FileOutputStream("datiProdotti.dat"));
+            ObjectOutputStream outputOrdini = new ObjectOutputStream(new FileOutputStream("datiOrdini.dat"));
+
+            outputUtenti.writeObject(utenti);
+            outputProdotti.writeObject(prodotti);
+            outputOrdini.writeObject(ordini);
+
+            outputUtenti.close();
+            outputProdotti.close();
+            outputOrdini.close();
+
+            System.out.println("Salvataggio completato");
+        }catch (FileNotFoundException fileNotFoundEx){
+            System.err.println("Errore: " + fileNotFoundEx.getMessage());
+            System.err.println("Impossibile trovare i files");
+        }catch (IOException ioEx){
             System.err.println("Errore: " + ioEx.getMessage());
             System.err.println("Errore di Input/Output");
-        }
-
-        try{
-            // Salvataggio degli utenti
-            for (int i = 0; i < utenti.size(); i++){
-                utentiOut.writeObject(utenti.get(i));
-            }
-
-            // Salvataggio prodotti
-            for (int i = 0; i < prodotti.size(); i++){
-                prodottoOut.writeObject(prodotti.get(i));
-            }
-
-            // Salvataggio ordini
-            for (int i = 0; i < ordini.size(); i++){
-                ordiniOut.writeObject(ordini.get(i));
-            }
-
-            // Chiusura dei file
-            utentiOut.close();
-            prodottoOut.close();
-            ordiniOut.close();
-
-            System.out.println("Salvataggio completato!");
-            System.out.println("Tipo di salvataggio: serializzazione");
-            System.out.println("Nomi dei file: datiUtenti.dat, datiProdotti.dat, datiOrdini.dat");
-        } catch (IOException ioEx){
-            System.err.println("Errore: " + ioEx.getMessage());
-            System.err.println("Errore di Input/Output");
-        } catch (NullPointerException nullPtrEx){
-            System.err.println("Errore: " + nullPtrEx.getMessage());
-            System.err.println("Oggetto non caricato correttamente");
         }
     }
 
     public void importaDati(String scelta){
-        ObjectInputStream utentiIn = null;
-        ObjectInputStream prodottiIn = null;
-        ObjectInputStream ordiniIn = null;
+        try{
+            ObjectInputStream inputUtenti = new ObjectInputStream(new FileInputStream("datiUtenti.dat"));
+            ObjectInputStream inputProdotti = new ObjectInputStream(new FileInputStream("datiProdotti.dat"));
+            ObjectInputStream inputOrdini = new ObjectInputStream(new FileInputStream("datiOrdini.dat"));
 
-        try {
-            utentiIn = new ObjectInputStream(new FileInputStream("datiUtent.dat"));
-            prodottiIn = new ObjectInputStream(new FileInputStream("datiProdotti.dat"));
-            ordiniIn = new ObjectInputStream(new FileInputStream("datiOrdini.dat"));
-        } catch (FileNotFoundException fileEx){
-            System.err.println("Errore: " + fileEx.getMessage());
+            if ((!utenti.isEmpty() || !prodotti.isEmpty() || !ordini.isEmpty()) && (scelta.equals("y") || scelta.equals("Y"))){
+                utenti = null;
+                prodotti = null;
+                ordini = null;
+            }
+
+            utenti = (ArrayList<Utente>) inputUtenti.readObject();
+            prodotti = (ArrayList<Prodotto>) inputProdotti.readObject();
+            ordini = (ArrayList<Ordine>) inputOrdini.readObject();
+
+            System.out.println("Importazione completata");
+
+        }catch (FileNotFoundException fileNotFoundEx){
+            System.err.println("Errore: " + fileNotFoundEx.getMessage());
             System.err.println("Files non trovati");
-        } catch (IOException ioEx){
+        }catch (IOException ioEx){
             System.err.println("Errore: " + ioEx.getMessage());
             System.err.println("Errore di Input/Output");
-        }
-
-        try {
-            if (scelta.equals("y")) {
-                if (!utenti.isEmpty()) {
-                    System.out.println("Eliminazione degli utenti temporanei in corso...");
-                } else if (!prodotti.isEmpty()) {
-                    System.out.println("Eliminazione dei prodotti temporanei in corso...");
-                } else if (!ordini.isEmpty()) {
-                    System.out.println("Eliminazione degli ordini temporanei in corso...");
-                }
-            }
-
-            while (true) {
-                Utente u = (Utente) utentiIn.readObject();
-                utenti.add(u);
-            }
-        } catch (EOFException eofException) {
-            System.out.println("Caricamento utenti completato!");
-
-            try{
-                utentiIn.close();
-            }catch (IOException ioEx){
-                System.err.println("Errore: " + ioEx.getMessage());
-                System.err.println("Errore di Input/Output");
-            }
-        } catch (ClassNotFoundException classEx){
-            System.err.println("Errore: " + classEx.getMessage());
-            System.err.println("Classe non trovata");
-        } catch (IOException ioEx){
-            System.err.println("Errore: " + ioEx.getMessage());
-            System.err.println("Errore di Input/Output");
-        } catch (NullPointerException nullPtrEx){
-            System.err.println("Errore: " +  nullPtrEx.getMessage());
-            System.err.println("Oggetto non caricato correttamente");
-        }
-
-        try{
-            while (true){
-                Prodotto p = (Prodotto) prodottiIn.readObject();
-                prodotti.add(p);
-            }
-        } catch (EOFException eofEx){
-            System.out.println("Inserimento dati prodotti completato");
-
-            try{
-                prodottiIn.close();
-            }catch (IOException ioEx){
-                System.err.println("Errore: " + ioEx.getMessage());
-                System.err.println("Errore di Input/Output");
-            }
-        }catch (ClassNotFoundException classEx){
-            System.err.println("Errore: " + classEx.getMessage());
-            System.err.println("Classe non trovata");
-        } catch (IOException ioEx){
-            System.err.println("Errore: " + ioEx.getMessage());
-            System.err.println("Errore di Input/Output");
-        } catch (NullPointerException nullPtrEx){
-            System.err.println("Errore: " +  nullPtrEx.getMessage());
-            System.err.println("Oggetto non caricato correttamente");
-        }
-
-        try{
-            while (true){
-                Ordine o = (Ordine) ordiniIn.readObject();
-                ordini.add(o);
-            }
-        }catch (EOFException eofEx){
-            System.out.println("Caricamento degli ordini comletato");
-
-            try{
-                ordiniIn.close();
-            } catch (IOException ioEx){
-                System.err.println("Errore: " + ioEx.getMessage());
-                System.err.println("Errore di Input/Output");
-            }
-        }catch (ClassNotFoundException classEx){
-            System.err.println("Errore: " + classEx.getMessage());
-            System.err.println("Classe non trovata");
-        } catch (IOException ioEx){
-            System.err.println("Errore: " + ioEx.getMessage());
-            System.err.println("Errore di Input/Output");
-        } catch (NullPointerException nullPtrEx){
-            System.err.println("Errore: " +  nullPtrEx.getMessage());
-            System.err.println("Oggetto non caricato correttamente");
+        }catch (ClassNotFoundException classNotFoundEx){
+            System.err.println("Errore: " + classNotFoundEx.getMessage());
+            System.err.println("Classi non trovate");
         }
     }
 
@@ -255,6 +155,16 @@ public class Azienda {
         return null;
     }
 
+    public Ordine getOrdine(int numeroOrdine){
+        for (int i = 0; i < ordini.size(); i++){
+            if (ordini.get(i).getNumeroOrdine() == numeroOrdine){
+                return ordini.get(i);
+            }
+        }
+
+        return null;
+    }
+
     public int generaNumeroOrdine(){
         int numero = -1;
         for (int i = 0; i < ordini.size(); i++){
@@ -262,5 +172,25 @@ public class Azienda {
         }
 
         return numero + 1;
+    }
+
+    public void aggiungiRecensione(Recenzione recenzione, String codiceProdotto){
+        Prodotto prodotto = getProdotto(codiceProdotto);
+
+        if (prodotto == null){
+            System.out.println("Impossibile trovare il prodotto");
+        }else {
+            prodotto.aggiungiRecensione(recenzione);
+        }
+    }
+
+    public void visuaizzaRecensioniProdotto(String codiceProdotto){
+        Prodotto prodotto = getProdotto(codiceProdotto);
+
+        if (prodotto == null){
+            System.out.println("Impossibile trovare il prodotto");
+        }else {
+            prodotto.visualizzaRecensioni();
+        }
     }
 }
