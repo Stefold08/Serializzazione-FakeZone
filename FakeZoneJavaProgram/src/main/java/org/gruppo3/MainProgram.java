@@ -157,26 +157,31 @@ public class MainProgram {
         double costo;
         Prodotto prodotto;
 
-        System.out.print("Codice: ");
-        codice = in.nextLine();
-        System.out.print("Nome: ");
-        nomeProdotto = in.nextLine();
-        System.out.print("Costo: ");
-        costo = in.nextDouble();
-        in.nextLine();
-        System.out.print("Descrizione: ");
-        descrizione = in.nextLine();
+        try {
+            System.out.print("Codice: ");
+            codice = in.nextLine();
+            System.out.print("Nome: ");
+            nomeProdotto = in.nextLine();
+            System.out.print("Costo: ");
+            costo = in.nextDouble();
+            in.nextLine();
+            System.out.print("Descrizione: ");
+            descrizione = in.nextLine();
 
-        prodotto = new Prodotto(codice, descrizione, nomeProdotto, costo);
+            prodotto = new Prodotto(codice, descrizione, nomeProdotto, costo);
 
-        do{
-            System.out.print("Percorco immagine: ");
-            prodotto.aggiungiImmagine(in.nextLine());
-            System.out.print("Vuoi aggiungere un altra immagine? (y/n): ");
-            scelta = in.nextLine();
-        }while (scelta.equals("y"));
+            do {
+                System.out.print("Percorco immagine: ");
+                prodotto.aggiungiImmagine(in.nextLine());
+                System.out.print("Vuoi aggiungere un altra immagine? (y/n): ");
+                scelta = in.nextLine();
+            } while (scelta.equals("y"));
 
-        azienda.addProdotto(prodotto);
+            azienda.addProdotto(prodotto);
+        }catch (InputMismatchException inputMismatchEx){
+            System.err.println("Errore: " + inputMismatchEx.getMessage());
+            System.err.println("Input non valido");
+        }
     }
 
     private static void informazioniProdotto(){
