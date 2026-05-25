@@ -223,22 +223,26 @@ public class MainProgram {
             return;
         }
 
+        try {
+            do {
+                product = ricercaProdotto();
+                if (product != null) {
+                    costoProdotto = product.getCosto();
 
-        do{
-            product = ricercaProdotto();
-            if (product != null){
-                costoProdotto = product.getCosto();
+                    System.out.print("Quantità: ");
+                    quantita = in.nextInt();
+                    in.nextLine();
 
-                System.out.print("Quantità: ");
-                quantita = in.nextInt();
-                in.nextLine();
-
-                dettagli = new DettagliOrdine(product, costoProdotto, quantita);
-                ordine.setDettagliProdotti(dettagli);
-                System.out.print("Vuoi aggiungere un altro prodotto? (y/n): ");
-                scelta = in.nextLine();
-            }
-        }while (scelta.equals("y"));
+                    dettagli = new DettagliOrdine(product, costoProdotto, quantita);
+                    ordine.setDettagliProdotti(dettagli);
+                    System.out.print("Vuoi aggiungere un altro prodotto? (y/n): ");
+                    scelta = in.nextLine();
+                }
+            } while (scelta.equals("y"));
+        }catch (InputMismatchException inputMismatchEx){
+            System.err.println("Errore: " + inputMismatchEx.getMessage());
+            System.err.println("Input non valido, operazione annullata");
+        }
 
         azienda.addOrdine(ordine);
         ordine.setStato("In approvazione");
