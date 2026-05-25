@@ -310,7 +310,7 @@ public class MainProgram {
         }catch (InputMismatchException inputMismatchEx){
             System.err.println("Errore: " + inputMismatchEx.getMessage());
             System.err.println("Input non valido, operazione annullara");
-            // return;
+            return;
         }
         in.nextLine();
         System.out.println("Descrizione: ");
