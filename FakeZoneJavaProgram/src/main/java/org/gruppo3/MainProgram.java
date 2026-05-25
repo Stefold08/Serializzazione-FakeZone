@@ -336,9 +336,9 @@ public class MainProgram {
         LocalDate dataInizio, dataFine;
 
         try {
-            System.out.print("Data inizio (MM/GG/AAAA): ");
+            System.out.print("Data inizio (AAAA-MM-GG): ");
             dataInizio = LocalDate.parse(in.nextLine());
-            System.out.print("Data fine (MM/GG/AAAA): ");
+            System.out.print("Data fine (AAAA-MM-GG): ");
             dataFine = LocalDate.parse(in.nextLine());
         }catch (DateTimeParseException dateTimeParseEx){
             System.err.println("Errore: " + dateTimeParseEx.getMessage());
