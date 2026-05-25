@@ -299,13 +299,19 @@ public class MainProgram {
 
         System.out.print("Codice prodotto: ");
         codiceProdotto = in.nextLine();
-        do{
-            System.out.print("Valutazione (0-5): ");
-            valutazione = in.nextInt();
-            if (!(valutazione > 1 && valutazione < 5)){
-                System.out.println("Valutazione non valida");
-            }
-        }while (!(valutazione > 1 && valutazione < 5));
+        try {
+            do {
+                System.out.print("Valutazione (0-5): ");
+                valutazione = in.nextInt();
+                if (!(valutazione > 1 && valutazione < 5)) {
+                    System.out.println("Valutazione non valida");
+                }
+            } while (!(valutazione > 1 && valutazione < 5));
+        }catch (InputMismatchException inputMismatchEx){
+            System.err.println("Errore: " + inputMismatchEx.getMessage());
+            System.err.println("Input non valido, operazione annullara");
+            // return;
+        }
         in.nextLine();
         System.out.println("Descrizione: ");
         descrizione = in.nextLine();
