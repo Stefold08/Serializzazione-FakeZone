@@ -43,8 +43,13 @@ public class Azienda {
     }
 
     public void modificaStatoOrdine(String stato, int numeroOrdine){
-        getOrdine(numeroOrdine).setStato(stato);
-        System.out.println("Stato attuale: " + stato);
+        try {
+            getOrdine(numeroOrdine).setStato(stato);
+            System.out.println("Stato attuale: " + stato);
+        }catch (NullPointerException nullPointerEx){
+            System.err.println("Errore: Exception in thread \"main\" java.lang.NullPointerException: Cannot invoke \"org.gruppo3.Ordine.setStato(String)\" because the return value of \"org.gruppo3.Azienda.getOrdine(int)\" is null");
+            System.err.println("Prodotto non trovato, codice sbagliato?");
+        }
     }
 
     public void visulizzaIncasssoPeriodo(LocalDate inizio, LocalDate fine){
