@@ -99,26 +99,35 @@ public class MainProgram {
         String nome, cognome, sesso, password, codiceFiscale, email, indirizzo, numeroTelefono;
         LocalDate dataNascita;
 
-        System.out.print("Nome: ");
-        nome = in.nextLine();
-        System.out.print("Cognome: ");
-        cognome = in.nextLine();
-        System.out.print("Sesso(M - F): ");
-        sesso = in.nextLine();
-        System.out.print("Data di nascita (AAAA-MM-GG): ");
-        dataNascita = LocalDate.parse(in.nextLine());
-        System.out.print("Codice fiscale: ");
-        codiceFiscale = in.nextLine();
-        System.out.print("Indirizzo/Via: ");
-        indirizzo = in.nextLine();
-        System.out.print("Numero di telefono: ");
-        numeroTelefono = in.nextLine();
-        System.out.print("Email: ");
-        email = in.nextLine();
-        System.out.print("Password: ");
-        password = in.nextLine();
+        try {
+            System.out.print("Nome: ");
+            nome = in.nextLine();
+            System.out.print("Cognome: ");
+            cognome = in.nextLine();
+            System.out.print("Sesso(M - F): ");
+            sesso = in.nextLine();
+            System.out.print("Data di nascita (AAAA-MM-GG): ");
+            dataNascita = LocalDate.parse(in.nextLine());
+            System.out.print("Codice fiscale: ");
+            codiceFiscale = in.nextLine();
+            System.out.print("Indirizzo/Via: ");
+            indirizzo = in.nextLine();
+            System.out.print("Numero di telefono: ");
+            numeroTelefono = in.nextLine();
+            System.out.print("Email: ");
+            email = in.nextLine();
+            System.out.print("Password: ");
+            password = in.nextLine();
 
-        azienda.addUtente(new Utente(password, nome, cognome, dataNascita, sesso, codiceFiscale, email, indirizzo, numeroTelefono));
+            azienda.addUtente(new Utente(password, nome, cognome, dataNascita, sesso, codiceFiscale, email, indirizzo, numeroTelefono));
+
+        } catch (DateTimeParseException dateTimeEx){
+            System.err.println("Errore: " + dateTimeEx.getMessage());
+            System.err.println("Formato data errato, utente non creato");
+        }catch (InputMismatchException inputMismatchEx){
+            System.err.println("Errore: " + inputMismatchEx.getMessage());
+            System.err.println("Input non valido");
+        }
     }
 
     private static void visualizzaDatiUtente(){
