@@ -134,15 +134,21 @@ public class MainProgram {
         Scanner in = new Scanner(System.in);
         String email, codiceFiscale, numeroTelefono;
 
-        System.out.println("Ricerca utente (puoi lasciare campi vuoti)");
-        System.out.print("Email: ");
-        email = in.nextLine();
-        System.out.print("Codice fiscale: ");
-        codiceFiscale = in.nextLine();
-        System.out.print("Numero di telefono: ");
-        numeroTelefono = in.nextLine();
+        try {
+            System.out.println("Ricerca utente (puoi lasciare campi vuoti)");
+            System.out.print("Email: ");
+            email = in.nextLine();
+            System.out.print("Codice fiscale: ");
+            codiceFiscale = in.nextLine();
+            System.out.print("Numero di telefono: ");
+            numeroTelefono = in.nextLine();
 
-        azienda.visualizzaDatiUtente(codiceFiscale, email, numeroTelefono);
+            azienda.visualizzaDatiUtente(codiceFiscale, email, numeroTelefono);
+
+        }catch (InputMismatchException inputMismatchEx){
+            System.err.println("Errore: " + inputMismatchEx.getMessage());
+            System.err.println("Input non valido, operazione annullata");
+        }
     }
 
     private static void aggiungiProdotto(){
