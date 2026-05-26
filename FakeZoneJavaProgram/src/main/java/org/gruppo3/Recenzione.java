@@ -1,8 +1,10 @@
 package org.gruppo3;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Recenzione {
+public class Recenzione implements Serializable {
+    private static final long serialVersionUID = 1;
     private int stelle;
     private LocalDate dataRecenzione;
     private Utente utente;
